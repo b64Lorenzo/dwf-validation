@@ -1,0 +1,17 @@
+/// floater ///  
+input string floaterMetaData               = "./LNGC/lngc.xml";
+input double roll                          = 0.0 deg;                 // [deg]
+input double pitch    = 0.0 deg;                 // [deg] (tf - ta) / lpp
+input double yaw      = 0.0 deg;                 // [deg] (initial heading north)  
+input double mass = 99473.146e3; // [kg]
+input double kxx = 15.2; //[m]
+input double kyy = 68.5; //[m]
+input double kzz = 68.5; //[m]   
+input double lpp = 274; // [m]
+input double ta = 11; // [m]
+input double tf = 11; // [m]
+input double beam = 44.3; // [m]
+input relcom = {135.934, 0.0, 16.3}; // [m, m, m]
+   
+input string geometryFile = "../../../data/LNGC/geometry/M8383.stl";    
+input string shape = "../../../data/LNGC/geometry/M8383.stl";

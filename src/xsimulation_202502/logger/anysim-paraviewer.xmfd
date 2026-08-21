@@ -1,0 +1,42 @@
+model "callbacks"
+{
+    callbacks
+    {
+        /*
+        gridSize in vbm = {nx, ny}
+        gridSize in callback = {Lx, Ly}
+        */
+		/*
+        viewer::paraview::WavesCallback "*/waves"
+        {
+            nx = "289";
+            ny = "209";
+            globalOrigin = "{0, 0}";
+            gridSize = "{285, 91}";
+            saveCount = 25;
+        };
+        
+        viewer::paraview::VxCallback "*/waves"
+        {
+            nx = "289";
+            ny = "209";
+            globalOrigin = "{0, 0}";
+            gridSize = "{285, 91}";
+            saveCount = 100;
+        };
+        viewer::paraview::VyCallback "*/waves"
+        {
+            nx = "289";
+            ny = "209";
+            globalOrigin = "{0, 0}";
+            gridSize = "{285, 91}";
+            saveCount = 100;
+        };
+      */
+    }
+}
+
+
+
+
+

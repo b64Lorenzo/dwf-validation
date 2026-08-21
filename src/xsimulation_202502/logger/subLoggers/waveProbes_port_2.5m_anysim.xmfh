@@ -1,0 +1,539 @@
+// Wave Probes
+ref::channels = "*/*/probe_inc, zeta, Probe inc";
+
+// 1st band
+//ref::channels = "*/*/probe_center_2.5m, zeta,   WaveElev_HydCenter_2.5m";
+//ref::channels = "*/*/probe_center_2.5m, velocity,   WaveVelocity_HydCenter_2.5m";
+//ref::channels = "*/*/probe_center_2.5m, meandir,   WaveMeanDir_HydCenter_2.5m";
+//ref::channels = "*/*/probe_center_2.5m, p,   Pressure_HydCenter_2.5m";
+
+//ref::channels = "*/*/probe_halfHydCenter_2.5m, zeta,   WaveElev_halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_halfHydCenter_2.5m, velocity,   WaveVelocity_halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_halfHydCenter_2.5m, meandir,   WaveMeanDir_halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_halfHydCenter_2.5m, p,   Pressure_halfHydCenter_2.5m";
+
+
+//ref::channels = "*/*/probe_2xhalfHydCenter_2.5m, zeta,   WaveElev_2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_2xhalfHydCenter_2.5m, velocity,   WaveVelocity_2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_2xhalfHydCenter_2.5m, meandir,   WaveMeanDir_2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_2xhalfHydCenter_2.5m, p,   Pressure_2xhalfHydCenter_2.5m";
+
+//ref::channels = "*/*/probe_-halfHydCenter_2.5m, zeta,   WaveElev_-halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-halfHydCenter_2.5m, velocity,   WaveVelocity_-halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-halfHydCenter_2.5m, meandir,   WaveMeanDir_-halfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-halfHydCenter_2.5m, p,   Pressure_-halfHydCenter_2.5m";
+
+//ref::channels = "*/*/probe_-2xhalfHydCenter_2.5m, zeta,   WaveElev_-2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-2xhalfHydCenter_2.5m, velocity,   WaveVelocity_-2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-2xhalfHydCenter_2.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_2.5m";
+//ref::channels = "*/*/probe_-2xhalfHydCenter_2.5m, p,   Pressure_-2xhalfHydCenter_2.5m";
+
+// 2nd band
+ref::channels = "*/*/probe_center_5m, zeta,   WaveElev_HydCenter_5m";
+ref::channels = "*/*/probe_center_5m, velocity,   WaveVelocity_HydCenter_5m";
+ref::channels = "*/*/probe_center_5m, meandir,   WaveMeanDir_HydCenter_5m";
+ref::channels = "*/*/probe_center_5m, p,   Pressure_HydCenter_5m";
+
+ref::channels = "*/*/probe_halfHydCenter_5m, zeta,   WaveElev_halfHydCenter_5m";
+ref::channels = "*/*/probe_halfHydCenter_5m, velocity,   WaveVelocity_halfHydCenter_5m";
+ref::channels = "*/*/probe_halfHydCenter_5m, meandir,   WaveMeanDir_halfHydCenter_5m";
+ref::channels = "*/*/probe_halfHydCenter_5m, p,   Pressure_halfHydCenter_5m";
+
+
+ref::channels = "*/*/probe_2xhalfHydCenter_5m, zeta,   WaveElev_2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_5m, velocity,   WaveVelocity_2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_5m, meandir,   WaveMeanDir_2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_5m, p,   Pressure_2xhalfHydCenter_5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_5m, zeta,   WaveElev_-halfHydCenter_5m";
+ref::channels = "*/*/probe_-halfHydCenter_5m, velocity,   WaveVelocity_-halfHydCenter_5m";
+ref::channels = "*/*/probe_-halfHydCenter_5m, meandir,   WaveMeanDir_-halfHydCenter_5m";
+ref::channels = "*/*/probe_-halfHydCenter_5m, p,   Pressure_-halfHydCenter_5m";
+
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_5m, zeta,   WaveElev_-2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_5m, velocity,   WaveVelocity_-2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_5m, meandir,   WaveMeanDir_-2xhalfHydCenter_5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_5m, p,   Pressure_-2xhalfHydCenter_5m";
+
+// 3rd band
+ref::channels = "*/*/probe_center_7.5m, zeta,   WaveElev_HydCenter_7.5m";
+ref::channels = "*/*/probe_center_7.5m, velocity,   WaveVelocity_HydCenter_7.5m";
+ref::channels = "*/*/probe_center_7.5m, meandir,   WaveMeanDir_HydCenter_7.5m";
+ref::channels = "*/*/probe_center_7.5m, p,   Pressure_HydCenter_7.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_7.5m, zeta,   WaveElev_halfHydCenter_7.5m";
+ref::channels = "*/*/probe_halfHydCenter_7.5m, velocity,   WaveVelocity_halfHydCenter_57.m";
+ref::channels = "*/*/probe_halfHydCenter_7.5m, meandir,   WaveMeanDir_halfHydCenter_7.5m";
+ref::channels = "*/*/probe_halfHydCenter_7.5m, p,   Pressure_halfHydCenter_7.5m";
+
+
+ref::channels = "*/*/probe_2xhalfHydCenter_7.5m, zeta,   WaveElev_2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_7.5m, velocity,   WaveVelocity_2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_7.5m, meandir,   WaveMeanDir_2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_7.5m, p,   Pressure_2xhalfHydCenter_7.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_7.5m, zeta,   WaveElev_-halfHydCenter_7.5m";
+ref::channels = "*/*/probe_-halfHydCenter_7.5m, velocity,   WaveVelocity_-halfHydCenter_7.5m";
+ref::channels = "*/*/probe_-halfHydCenter_7.5m, meandir,   WaveMeanDir_-halfHydCenter_7.5m";
+ref::channels = "*/*/probe_-halfHydCenter_7.5m, p,   Pressure_-halfHydCenter_7.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_7.5m, zeta,   WaveElev_-2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_7.5m, velocity,   WaveVelocity_-2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_7.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_7.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_7.5m, p,   Pressure_-2xhalfHydCenter_7.5m";
+
+
+// 4th band
+ref::channels = "*/*/probe_center_10m, zeta,   WaveElev_HydCenter_10m";
+ref::channels = "*/*/probe_center_10m, velocity,   WaveVelocity_HydCenter_10m";
+ref::channels = "*/*/probe_center_10m, meandir,   WaveMeanDir_HydCenter_10m";
+ref::channels = "*/*/probe_center_10m, p,   Pressure_HydCenter_10m";
+
+ref::channels = "*/*/probe_halfHydCenter_10m, zeta,   WaveElev_halfHydCenter_10m";
+ref::channels = "*/*/probe_halfHydCenter_10m, velocity,   WaveVelocity_halfHydCenter_10m";
+ref::channels = "*/*/probe_halfHydCenter_10m, meandir,   WaveMeanDir_halfHydCenter_10m";
+ref::channels = "*/*/probe_halfHydCenter_10m, p,   Pressure_halfHydCenter_10m";
+
+
+ref::channels = "*/*/probe_2xhalfHydCenter_10m, zeta,   WaveElev_2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_2xhalfHydCenter_10m, velocity,   WaveVelocity_2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_2xhalfHydCenter_10m, meandir,   WaveMeanDir_2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_2xhalfHydCenter_10m, p,   Pressure_2xhalfHydCenter_10m";
+
+ref::channels = "*/*/probe_-halfHydCenter_10m, zeta,   WaveElev_-halfHydCenter_10m";
+ref::channels = "*/*/probe_-halfHydCenter_10m, velocity,   WaveVelocity_-halfHydCenter_10m";
+ref::channels = "*/*/probe_-halfHydCenter_10m, meandir,   WaveMeanDir_-halfHydCenter_10m";
+ref::channels = "*/*/probe_-halfHydCenter_10m, p,   Pressure_-halfHydCenter_10m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_10m, zeta,   WaveElev_-2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_10m, velocity,   WaveVelocity_-2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_10m, meandir,   WaveMeanDir_-2xhalfHydCenter_10m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_10m, p,   Pressure_-2xhalfHydCenter_10m";
+
+// 5th band
+ref::channels = "*/*/probe_center_12.5m, zeta,   WaveElev_HydCenter_12.5m";
+ref::channels = "*/*/probe_center_12.5m, velocity,   WaveVelocity_HydCenter_12.5m";
+ref::channels = "*/*/probe_center_12.5m, meandir,   WaveMeanDir_HydCenter_12.5m";
+ref::channels = "*/*/probe_center_12.5m, p,   Pressure_HydCenter_12.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_12.5m, zeta,   WaveElev_halfHydCenter_12.5m";
+ref::channels = "*/*/probe_halfHydCenter_12.5m, velocity,   WaveVelocity_halfHydCenter_12.5m";
+ref::channels = "*/*/probe_halfHydCenter_12.5m, meandir,   WaveMeanDir_halfHydCenter_12.5m";
+ref::channels = "*/*/probe_halfHydCenter_12.5m, p,   Pressure_halfHydCenter_12.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_12.5m, zeta,   WaveElev_2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_12.5m, velocity,   WaveVelocity_2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_12.5m, meandir,   WaveMeanDir_2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_12.5m, p,   Pressure_2xhalfHydCenter_12.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_12.5m, zeta,   WaveElev_-halfHydCenter_12.5m";
+ref::channels = "*/*/probe_-halfHydCenter_12.5m, velocity,   WaveVelocity_-halfHydCenter_12.5m";
+ref::channels = "*/*/probe_-halfHydCenter_12.5m, meandir,   WaveMeanDir_-halfHydCenter_12.5m";
+ref::channels = "*/*/probe_-halfHydCenter_12.5m, p,   Pressure_-halfHydCenter_12.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_12.5m, zeta,   WaveElev_-2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_12.5m, velocity,   WaveVelocity_-2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_12.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_12.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_12.5m, p,   Pressure_-2xhalfHydCenter_12.5m";
+
+
+// 6th band
+ref::channels = "*/*/probe_center_15m, zeta,   WaveElev_HydCenter_15m";
+ref::channels = "*/*/probe_center_15m, velocity,   WaveVelocity_HydCenter_15m";
+ref::channels = "*/*/probe_center_15m, meandir,   WaveMeanDir_HydCenter_15m";
+ref::channels = "*/*/probe_center_15m, p,   Pressure_HydCenter_15m";
+
+ref::channels = "*/*/probe_halfHydCenter_15m, zeta,   WaveElev_halfHydCenter_15m";
+ref::channels = "*/*/probe_halfHydCenter_15m, velocity,   WaveVelocity_halfHydCenter_15m";
+ref::channels = "*/*/probe_halfHydCenter_15m, meandir,   WaveMeanDir_halfHydCenter_15m";
+ref::channels = "*/*/probe_halfHydCenter_15m, p,   Pressure_halfHydCenter_15m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_15m, zeta,   WaveElev_2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_2xhalfHydCenter_15m, velocity,   WaveVelocity_2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_2xhalfHydCenter_15m, meandir,   WaveMeanDir_2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_2xhalfHydCenter_15m, p,   Pressure_2xhalfHydCenter_15m";
+
+ref::channels = "*/*/probe_-halfHydCenter_15m, zeta,   WaveElev_-halfHydCenter_15m";
+ref::channels = "*/*/probe_-halfHydCenter_15m, velocity,   WaveVelocity_-halfHydCenter_15m";
+ref::channels = "*/*/probe_-halfHydCenter_15m, meandir,   WaveMeanDir_-halfHydCenter_15m";
+ref::channels = "*/*/probe_-halfHydCenter_15m, p,   Pressure_-halfHydCenter_15m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_15m, zeta,   WaveElev_-2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_15m, velocity,   WaveVelocity_-2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_15m, meandir,   WaveMeanDir_-2xhalfHydCenter_15m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_15m, p,   Pressure_-2xhalfHydCenter_15m";
+
+// 7th band
+ref::channels = "*/*/probe_center_17.5m, zeta,   WaveElev_HydCenter_17.5m";
+ref::channels = "*/*/probe_center_17.5m, velocity,   WaveVelocity_HydCenter_17.5m";
+ref::channels = "*/*/probe_center_17.5m, meandir,   WaveMeanDir_HydCenter_17.5m";
+ref::channels = "*/*/probe_center_17.5m, p,   Pressure_HydCenter_17.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_17.5m, zeta,   WaveElev_halfHydCenter_17.5m";
+ref::channels = "*/*/probe_halfHydCenter_17.5m, velocity,   WaveVelocity_halfHydCenter_17.5m";
+ref::channels = "*/*/probe_halfHydCenter_17.5m, meandir,   WaveMeanDir_halfHydCenter_17.5m";
+ref::channels = "*/*/probe_halfHydCenter_17.5m, p,   Pressure_halfHydCenter_17.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_17.5m, zeta,   WaveElev_2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_17.5m, velocity,   WaveVelocity_2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_17.5m, meandir,   WaveMeanDir_2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_17.5m, p,   Pressure_2xhalfHydCenter_17.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_17.5m, zeta,   WaveElev_-halfHydCenter_17.5m";
+ref::channels = "*/*/probe_-halfHydCenter_17.5m, velocity,   WaveVelocity_-halfHydCenter_17.5m";
+ref::channels = "*/*/probe_-halfHydCenter_17.5m, meandir,   WaveMeanDir_-halfHydCenter_17.5m";
+ref::channels = "*/*/probe_-halfHydCenter_17.5m, p,   Pressure_-halfHydCenter_17.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_17.5m, zeta,   WaveElev_-2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_17.5m, velocity,   WaveVelocity_-2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_17.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_17.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_17.5m, p,   Pressure_-2xhalfHydCenter_17.5m";
+
+
+// 8th band
+ref::channels = "*/*/probe_center_20m, zeta,   WaveElev_HydCenter_20m";
+ref::channels = "*/*/probe_center_20m, velocity,   WaveVelocity_HydCenter_20m";
+ref::channels = "*/*/probe_center_20m, meandir,   WaveMeanDir_HydCenter_20m";
+ref::channels = "*/*/probe_center_20m, p,   Pressure_HydCenter_20m";
+
+ref::channels = "*/*/probe_halfHydCenter_20m, zeta,   WaveElev_halfHydCenter_20m";
+ref::channels = "*/*/probe_halfHydCenter_20m, velocity,   WaveVelocity_halfHydCenter_20m";
+ref::channels = "*/*/probe_halfHydCenter_20m, meandir,   WaveMeanDir_halfHydCenter_20m";
+ref::channels = "*/*/probe_halfHydCenter_20m, p,   Pressure_halfHydCenter_20m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_20m, zeta,   WaveElev_2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_2xhalfHydCenter_20m, velocity,   WaveVelocity_2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_2xhalfHydCenter_20m, meandir,   WaveMeanDir_2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_2xhalfHydCenter_20m, p,   Pressure_2xhalfHydCenter_20m";
+
+ref::channels = "*/*/probe_-halfHydCenter_20m, zeta,   WaveElev_-halfHydCenter_20m";
+ref::channels = "*/*/probe_-halfHydCenter_20m, velocity,   WaveVelocity_-halfHydCenter_20m";
+ref::channels = "*/*/probe_-halfHydCenter_20m, meandir,   WaveMeanDir_-halfHydCenter_20m";
+ref::channels = "*/*/probe_-halfHydCenter_20m, p,   Pressure_-halfHydCenter_20m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_20m, zeta,   WaveElev_-2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_20m, velocity,   WaveVelocity_-2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_20m, meandir,   WaveMeanDir_-2xhalfHydCenter_20m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_20m, p,   Pressure_-2xhalfHydCenter_20m";
+
+// 9th band
+ref::channels = "*/*/probe_center_22.5m, zeta,   WaveElev_HydCenter_22.5m";
+ref::channels = "*/*/probe_center_22.5m, velocity,   WaveVelocity_HydCenter_22.5m";
+ref::channels = "*/*/probe_center_22.5m, meandir,   WaveMeanDir_HydCenter_22.5m";
+ref::channels = "*/*/probe_center_22.5m, p,   Pressure_HydCenter_22.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_22.5m, zeta,   WaveElev_halfHydCenter_22.5m";
+ref::channels = "*/*/probe_halfHydCenter_22.5m, velocity,   WaveVelocity_halfHydCenter_22.5m";
+ref::channels = "*/*/probe_halfHydCenter_22.5m, meandir,   WaveMeanDir_halfHydCenter_22.5m";
+ref::channels = "*/*/probe_halfHydCenter_22.5m, p,   Pressure_halfHydCenter_22.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_22.5m, zeta,   WaveElev_2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_22.5m, velocity,   WaveVelocity_2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_22.5m, meandir,   WaveMeanDir_2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_22.5m, p,   Pressure_2xhalfHydCenter_22.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_22.5m, zeta,   WaveElev_-halfHydCenter_22.5m";
+ref::channels = "*/*/probe_-halfHydCenter_22.5m, velocity,   WaveVelocity_-halfHydCenter_22.5m";
+ref::channels = "*/*/probe_-halfHydCenter_22.5m, meandir,   WaveMeanDir_-halfHydCenter_22.5m";
+ref::channels = "*/*/probe_-halfHydCenter_22.5m, p,   Pressure_-halfHydCenter_22.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_22.5m, zeta,   WaveElev_-2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_22.5m, velocity,   WaveVelocity_-2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_22.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_22.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_22.5m, p,   Pressure_-2xhalfHydCenter_22.5m";
+
+
+
+// 10th band
+ref::channels = "*/*/probe_center_25m, zeta,   WaveElev_HydCenter_25m";
+ref::channels = "*/*/probe_center_25m, velocity,   WaveVelocity_HydCenter_25m";
+ref::channels = "*/*/probe_center_25m, meandir,   WaveMeanDir_HydCenter_25m";
+ref::channels = "*/*/probe_center_25m, p,   Pressure_HydCenter_25m";
+
+ref::channels = "*/*/probe_halfHydCenter_25m, zeta,   WaveElev_halfHydCenter_25m";
+ref::channels = "*/*/probe_halfHydCenter_25m, velocity,   WaveVelocity_halfHydCenter_25m";
+ref::channels = "*/*/probe_halfHydCenter_25m, meandir,   WaveMeanDir_halfHydCenter_25m";
+ref::channels = "*/*/probe_halfHydCenter_25m, p,   Pressure_halfHydCenter_25m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_25m, zeta,   WaveElev_2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_2xhalfHydCenter_25m, velocity,   WaveVelocity_2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_2xhalfHydCenter_25m, meandir,   WaveMeanDir_2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_2xhalfHydCenter_25m, p,   Pressure_2xhalfHydCenter_25m";
+
+ref::channels = "*/*/probe_-halfHydCenter_25m, zeta,   WaveElev_-halfHydCenter_25m";
+ref::channels = "*/*/probe_-halfHydCenter_25m, velocity,   WaveVelocity_-halfHydCenter_25m";
+ref::channels = "*/*/probe_-halfHydCenter_25m, meandir,   WaveMeanDir_-halfHydCenter_25m";
+ref::channels = "*/*/probe_-halfHydCenter_25m, p,   Pressure_-halfHydCenter_25m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_25m, zeta,   WaveElev_-2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_25m, velocity,   WaveVelocity_-2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_25m, meandir,   WaveMeanDir_-2xhalfHydCenter_25m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_25m, p,   Pressure_-2xhalfHydCenter_25m";
+
+// 11th band
+ref::channels = "*/*/probe_center_27.5m, zeta,   WaveElev_HydCenter_27.5m";
+ref::channels = "*/*/probe_center_27.5m, velocity,   WaveVelocity_HydCenter_27.5m";
+ref::channels = "*/*/probe_center_27.5m, meandir,   WaveMeanDir_HydCenter_27.5m";
+ref::channels = "*/*/probe_center_27.5m, p,   Pressure_HydCenter_27.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_27.5m, zeta,   WaveElev_halfHydCenter_27.5m";
+ref::channels = "*/*/probe_halfHydCenter_27.5m, velocity,   WaveVelocity_halfHydCenter_27.5m";
+ref::channels = "*/*/probe_halfHydCenter_27.5m, meandir,   WaveMeanDir_halfHydCenter_27.5m";
+ref::channels = "*/*/probe_halfHydCenter_27.5m, p,   Pressure_halfHydCenter_27.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_27.5m, zeta,   WaveElev_2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_27.5m, velocity,   WaveVelocity_2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_27.5m, meandir,   WaveMeanDir_2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_27.5m, p,   Pressure_2xhalfHydCenter_27.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_27.5m, zeta,   WaveElev_-halfHydCenter_27.5m";
+ref::channels = "*/*/probe_-halfHydCenter_27.5m, velocity,   WaveVelocity_-halfHydCenter_27.5m";
+ref::channels = "*/*/probe_-halfHydCenter_27.5m, meandir,   WaveMeanDir_-halfHydCenter_27.5m";
+ref::channels = "*/*/probe_-halfHydCenter_27.5m, p,   Pressure_-halfHydCenter_27.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_27.5m, zeta,   WaveElev_-2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_27.5m, velocity,   WaveVelocity_-2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_27.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_27.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_27.5m, p,   Pressure_-2xhalfHydCenter_27.5m";
+
+
+// 12th band
+ref::channels = "*/*/probe_center_30m, zeta,   WaveElev_HydCenter_30m";
+ref::channels = "*/*/probe_center_30m, velocity,   WaveVelocity_HydCenter_30m";
+ref::channels = "*/*/probe_center_30m, meandir,   WaveMeanDir_HydCenter_30m";
+ref::channels = "*/*/probe_center_30m, p,   Pressure_HydCenter_30m";
+
+ref::channels = "*/*/probe_halfHydCenter_30m, zeta,   WaveElev_halfHydCenter_30m";
+ref::channels = "*/*/probe_halfHydCenter_30m, velocity,   WaveVelocity_halfHydCenter_30m";
+ref::channels = "*/*/probe_halfHydCenter_30m, meandir,   WaveMeanDir_halfHydCenter_30m";
+ref::channels = "*/*/probe_halfHydCenter_30m, p,   Pressure_halfHydCenter_30m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_30m, zeta,   WaveElev_2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_2xhalfHydCenter_30m, velocity,   WaveVelocity_2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_2xhalfHydCenter_30m, meandir,   WaveMeanDir_2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_2xhalfHydCenter_30m, p,   Pressure_2xhalfHydCenter_30m";
+
+ref::channels = "*/*/probe_-halfHydCenter_30m, zeta,   WaveElev_-halfHydCenter_30m";
+ref::channels = "*/*/probe_-halfHydCenter_30m, velocity,   WaveVelocity_-halfHydCenter_30m";
+ref::channels = "*/*/probe_-halfHydCenter_30m, meandir,   WaveMeanDir_-halfHydCenter_30m";
+ref::channels = "*/*/probe_-halfHydCenter_30m, p,   Pressure_-halfHydCenter_30m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_30m, zeta,   WaveElev_-2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_30m, velocity,   WaveVelocity_-2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_30m, meandir,   WaveMeanDir_-2xhalfHydCenter_30m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_30m, p,   Pressure_-2xhalfHydCenter_30m";
+
+// 13th band
+ref::channels = "*/*/probe_center_32.5m, zeta,   WaveElev_HydCenter_32.5m";
+ref::channels = "*/*/probe_center_32.5m, velocity,   WaveVelocity_HydCenter_32.5m";
+ref::channels = "*/*/probe_center_32.5m, meandir,   WaveMeanDir_HydCenter_32.5m";
+ref::channels = "*/*/probe_center_32.5m, p,   Pressure_HydCenter_32.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_32.5m, zeta,   WaveElev_halfHydCenter_32.5m";
+ref::channels = "*/*/probe_halfHydCenter_32.5m, velocity,   WaveVelocity_halfHydCenter_32.5m";
+ref::channels = "*/*/probe_halfHydCenter_32.5m, meandir,   WaveMeanDir_halfHydCenter_32.5m";
+ref::channels = "*/*/probe_halfHydCenter_32.5m, p,   Pressure_halfHydCenter_32.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_32.5m, zeta,   WaveElev_2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_32.5m, velocity,   WaveVelocity_2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_32.5m, meandir,   WaveMeanDir_2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_32.5m, p,   Pressure_2xhalfHydCenter_32.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_32.5m, zeta,   WaveElev_-halfHydCenter_32.5m";
+ref::channels = "*/*/probe_-halfHydCenter_32.5m, velocity,   WaveVelocity_-halfHydCenter_32.5m";
+ref::channels = "*/*/probe_-halfHydCenter_32.5m, meandir,   WaveMeanDir_-halfHydCenter_32.5m";
+ref::channels = "*/*/probe_-halfHydCenter_32.5m, p,   Pressure_-halfHydCenter_32.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_32.5m, zeta,   WaveElev_-2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_32.5m, velocity,   WaveVelocity_-2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_32.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_32.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_32.5m, p,   Pressure_-2xhalfHydCenter_32.5m";
+
+
+// 14th band
+ref::channels = "*/*/probe_center_35m, zeta,   WaveElev_HydCenter_35m";
+ref::channels = "*/*/probe_center_35m, velocity,   WaveVelocity_HydCenter_35m";
+ref::channels = "*/*/probe_center_35m, meandir,   WaveMeanDir_HydCenter_35m";
+ref::channels = "*/*/probe_center_35m, p,   Pressure_HydCenter_35m";
+
+ref::channels = "*/*/probe_halfHydCenter_35m, zeta,   WaveElev_halfHydCenter_35m";
+ref::channels = "*/*/probe_halfHydCenter_35m, velocity,   WaveVelocity_halfHydCenter_35m";
+ref::channels = "*/*/probe_halfHydCenter_35m, meandir,   WaveMeanDir_halfHydCenter_35m";
+ref::channels = "*/*/probe_halfHydCenter_35m, p,   Pressure_halfHydCenter_35m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_35m, zeta,   WaveElev_2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_2xhalfHydCenter_35m, velocity,   WaveVelocity_2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_2xhalfHydCenter_35m, meandir,   WaveMeanDir_2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_2xhalfHydCenter_35m, p,   Pressure_2xhalfHydCenter_35m";
+
+ref::channels = "*/*/probe_-halfHydCenter_35m, zeta,   WaveElev_-halfHydCenter_35m";
+ref::channels = "*/*/probe_-halfHydCenter_35m, velocity,   WaveVelocity_-halfHydCenter_35m";
+ref::channels = "*/*/probe_-halfHydCenter_35m, meandir,   WaveMeanDir_-halfHydCenter_35m";
+ref::channels = "*/*/probe_-halfHydCenter_35m, p,   Pressure_-halfHydCenter_35m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_35m, zeta,   WaveElev_-2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_35m, velocity,   WaveVelocity_-2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_35m, meandir,   WaveMeanDir_-2xhalfHydCenter_35m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_35m, p,   Pressure_-2xhalfHydCenter_35m";
+
+// 15th band
+ref::channels = "*/*/probe_center_37.5m, zeta,   WaveElev_HydCenter_37.5m";
+ref::channels = "*/*/probe_center_37.5m, velocity,   WaveVelocity_HydCenter_37.5m";
+ref::channels = "*/*/probe_center_37.5m, meandir,   WaveMeanDir_HydCenter_37.5m";
+ref::channels = "*/*/probe_center_37.5m, p,   Pressure_HydCenter_37.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_37.5m, zeta,   WaveElev_halfHydCenter_37.5m";
+ref::channels = "*/*/probe_halfHydCenter_37.5m, velocity,   WaveVelocity_halfHydCenter_37.5m";
+ref::channels = "*/*/probe_halfHydCenter_37.5m, meandir,   WaveMeanDir_halfHydCenter_37.5m";
+ref::channels = "*/*/probe_halfHydCenter_37.5m, p,   Pressure_halfHydCenter_37.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_37.5m, zeta,   WaveElev_2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_37.5m, velocity,   WaveVelocity_2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_37.5m, meandir,   WaveMeanDir_2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_37.5m, p,   Pressure_2xhalfHydCenter_37.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_37.5m, zeta,   WaveElev_-halfHydCenter_37.5m";
+ref::channels = "*/*/probe_-halfHydCenter_37.5m, velocity,   WaveVelocity_-halfHydCenter_37.5m";
+ref::channels = "*/*/probe_-halfHydCenter_37.5m, meandir,   WaveMeanDir_-halfHydCenter_37.5m";
+ref::channels = "*/*/probe_-halfHydCenter_37.5m, p,   Pressure_-halfHydCenter_37.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_37.5m, zeta,   WaveElev_-2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_37.5m, velocity,   WaveVelocity_-2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_37.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_37.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_37.5m, p,   Pressure_-2xhalfHydCenter_37.5m";
+
+
+// 16th band
+ref::channels = "*/*/probe_center_40m, zeta,   WaveElev_HydCenter_40m";
+ref::channels = "*/*/probe_center_40m, velocity,   WaveVelocity_HydCenter_40m";
+ref::channels = "*/*/probe_center_40m, meandir,   WaveMeanDir_HydCenter_40m";
+ref::channels = "*/*/probe_center_40m, p,   Pressure_HydCenter_40m";
+
+ref::channels = "*/*/probe_halfHydCenter_40m, zeta,   WaveElev_halfHydCenter_40m";
+ref::channels = "*/*/probe_halfHydCenter_40m, velocity,   WaveVelocity_halfHydCenter_40m";
+ref::channels = "*/*/probe_halfHydCenter_40m, meandir,   WaveMeanDir_halfHydCenter_40m";
+ref::channels = "*/*/probe_halfHydCenter_40m, p,   Pressure_halfHydCenter_40m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_40m, zeta,   WaveElev_2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_2xhalfHydCenter_40m, velocity,   WaveVelocity_2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_2xhalfHydCenter_40m, meandir,   WaveMeanDir_2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_2xhalfHydCenter_40m, p,   Pressure_2xhalfHydCenter_40m";
+
+ref::channels = "*/*/probe_-halfHydCenter_40m, zeta,   WaveElev_-halfHydCenter_40m";
+ref::channels = "*/*/probe_-halfHydCenter_40m, velocity,   WaveVelocity_-halfHydCenter_40m";
+ref::channels = "*/*/probe_-halfHydCenter_40m, meandir,   WaveMeanDir_-halfHydCenter_40m";
+ref::channels = "*/*/probe_-halfHydCenter_40m, p,   Pressure_-halfHydCenter_40m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_40m, zeta,   WaveElev_-2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_40m, velocity,   WaveVelocity_-2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_40m, meandir,   WaveMeanDir_-2xhalfHydCenter_40m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_40m, p,   Pressure_-2xhalfHydCenter_40m";
+
+// 17th band
+ref::channels = "*/*/probe_center_42.5m, zeta,   WaveElev_HydCenter_42.5m";
+ref::channels = "*/*/probe_center_42.5m, velocity,   WaveVelocity_HydCenter_42.5m";
+ref::channels = "*/*/probe_center_42.5m, meandir,   WaveMeanDir_HydCenter_42.5m";
+ref::channels = "*/*/probe_center_42.5m, p,   Pressure_HydCenter_42.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_42.5m, zeta,   WaveElev_halfHydCenter_42.5m";
+ref::channels = "*/*/probe_halfHydCenter_42.5m, velocity,   WaveVelocity_halfHydCenter_42.5m";
+ref::channels = "*/*/probe_halfHydCenter_42.5m, meandir,   WaveMeanDir_halfHydCenter_42.5m";
+ref::channels = "*/*/probe_halfHydCenter_42.5m, p,   Pressure_halfHydCenter_42.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_42.5m, zeta,   WaveElev_2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_42.5m, velocity,   WaveVelocity_2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_42.5m, meandir,   WaveMeanDir_2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_42.5m, p,   Pressure_2xhalfHydCenter_42.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_42.5m, zeta,   WaveElev_-halfHydCenter_42.5m";
+ref::channels = "*/*/probe_-halfHydCenter_42.5m, velocity,   WaveVelocity_-halfHydCenter_42.5m";
+ref::channels = "*/*/probe_-halfHydCenter_42.5m, meandir,   WaveMeanDir_-halfHydCenter_42.5m";
+ref::channels = "*/*/probe_-halfHydCenter_42.5m, p,   Pressure_-halfHydCenter_42.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_42.5m, zeta,   WaveElev_-2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_42.5m, velocity,   WaveVelocity_-2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_42.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_42.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_42.5m, p,   Pressure_-2xhalfHydCenter_42.5m";
+
+
+// 18th band
+ref::channels = "*/*/probe_center_45m, zeta,   WaveElev_HydCenter_45m";
+ref::channels = "*/*/probe_center_45m, velocity,   WaveVelocity_HydCenter_45m";
+ref::channels = "*/*/probe_center_45m, meandir,   WaveMeanDir_HydCenter_45m";
+ref::channels = "*/*/probe_center_45m, p,   Pressure_HydCenter_45m";
+
+ref::channels = "*/*/probe_halfHydCenter_45m, zeta,   WaveElev_halfHydCenter_45m";
+ref::channels = "*/*/probe_halfHydCenter_45m, velocity,   WaveVelocity_halfHydCenter_45m";
+ref::channels = "*/*/probe_halfHydCenter_45m, meandir,   WaveMeanDir_halfHydCenter_45m";
+ref::channels = "*/*/probe_halfHydCenter_45m, p,   Pressure_halfHydCenter_45m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_45m, zeta,   WaveElev_2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_2xhalfHydCenter_45m, velocity,   WaveVelocity_2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_2xhalfHydCenter_45m, meandir,   WaveMeanDir_2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_2xhalfHydCenter_45m, p,   Pressure_2xhalfHydCenter_45m";
+
+ref::channels = "*/*/probe_-halfHydCenter_45m, zeta,   WaveElev_-halfHydCenter_45m";
+ref::channels = "*/*/probe_-halfHydCenter_45m, velocity,   WaveVelocity_-halfHydCenter_45m";
+ref::channels = "*/*/probe_-halfHydCenter_45m, meandir,   WaveMeanDir_-halfHydCenter_45m";
+ref::channels = "*/*/probe_-halfHydCenter_45m, p,   Pressure_-halfHydCenter_45m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_45m, zeta,   WaveElev_-2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_45m, velocity,   WaveVelocity_-2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_45m, meandir,   WaveMeanDir_-2xhalfHydCenter_45m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_45m, p,   Pressure_-2xhalfHydCenter_45m";
+
+// 19th band
+ref::channels = "*/*/probe_center_47.5m, zeta,   WaveElev_HydCenter_47.5m";
+ref::channels = "*/*/probe_center_47.5m, velocity,   WaveVelocity_HydCenter_47.5m";
+ref::channels = "*/*/probe_center_47.5m, meandir,   WaveMeanDir_HydCenter_47.5m";
+ref::channels = "*/*/probe_center_47.5m, p,   Pressure_HydCenter_47.5m";
+
+ref::channels = "*/*/probe_halfHydCenter_47.5m, zeta,   WaveElev_halfHydCenter_47.5m";
+ref::channels = "*/*/probe_halfHydCenter_47.5m, velocity,   WaveVelocity_halfHydCenter_47.5m";
+ref::channels = "*/*/probe_halfHydCenter_47.5m, meandir,   WaveMeanDir_halfHydCenter_47.5m";
+ref::channels = "*/*/probe_halfHydCenter_47.5m, p,   Pressure_halfHydCenter_47.5m";
+
+ref::channels = "*/*/probe_2xhalfHydCenter_47.5m, zeta,   WaveElev_2xhalfHydCenter_47.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_47.5m, velocity,   WaveVelocity_2xhalfHydCenter_47.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_47.5m, meandir,   WaveMeanDir_2xhalfHydCenter_47.5m";
+ref::channels = "*/*/probe_2xhalfHydCenter_47.5m, p,   Pressure_2xhalfHydCenter_47.5m";
+
+ref::channels = "*/*/probe_-halfHydCenter_47.5m, zeta,   WaveElev_-halfHydCenter_47.5m";
+ref::channels = "*/*/probe_-halfHydCenter_47.5m, velocity,   WaveVelocity_-halfHydCenter_47.5m";
+ref::channels = "*/*/probe_-halfHydCenter_47.5m, meandir,   WaveMeanDir_-halfHydCenter_47.5m";
+ref::channels = "*/*/probe_-halfHydCenter_47.5m, p,   Pressure_-halfHydCenter_47.5m";
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_47.5m, zeta,   WaveElev_-2xhalfHydCenter_47.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_47.5m, velocity,   WaveVelocity_-2xhalfHydCenter_457.m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_47.5m, meandir,   WaveMeanDir_-2xhalfHydCenter_47.5m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_47.5m, p,   Pressure_-2xhalfHydCenter_47.5m";
+
+
+// 20th band
+ref::channels = "*/*/probe_center_50m, zeta,   WaveElev_HydCenter_50m";
+ref::channels = "*/*/probe_center_50m, velocity,   WaveVelocity_HydCenter_50m";
+ref::channels = "*/*/probe_center_50m, meandir,   WaveMeanDir_HydCenter_50m";
+ref::channels = "*/*/probe_center_50m, p,   Pressure_HydCenter_50m";
+
+ref::channels = "*/*/probe_halfHydCenter_50m, zeta,   WaveElev_halfHydCenter_50m";
+ref::channels = "*/*/probe_halfHydCenter_50m, velocity,   WaveVelocity_halfHydCenter_50m";
+ref::channels = "*/*/probe_halfHydCenter_50m, meandir,   WaveMeanDir_halfHydCenter_50m";
+ref::channels = "*/*/probe_halfHydCenter_50m, p,   Pressure_halfHydCenter_50m";
+
+
+ref::channels = "*/*/probe_2xhalfHydCenter_50m, zeta,   WaveElev_2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_2xhalfHydCenter_50m, velocity,   WaveVelocity_2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_2xhalfHydCenter_50m, meandir,   WaveMeanDir_2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_2xhalfHydCenter_50m, p,   Pressure_2xhalfHydCenter_50m";
+
+ref::channels = "*/*/probe_-halfHydCenter_50m, zeta,   WaveElev_-halfHydCenter_50m";
+ref::channels = "*/*/probe_-halfHydCenter_50m, velocity,   WaveVelocity_-halfHydCenter_50m";
+ref::channels = "*/*/probe_-halfHydCenter_50m, meandir,   WaveMeanDir_-halfHydCenter_50m";
+ref::channels = "*/*/probe_-halfHydCenter_50m, p,   Pressure_-halfHydCenter_50m";
+
+
+ref::channels = "*/*/probe_-2xhalfHydCenter_50m, zeta,   WaveElev_-2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_50m, velocity,   WaveVelocity_-2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_50m, meandir,   WaveMeanDir_-2xhalfHydCenter_50m";
+ref::channels = "*/*/probe_-2xhalfHydCenter_50m, p,   Pressure_-2xhalfHydCenter_50m";

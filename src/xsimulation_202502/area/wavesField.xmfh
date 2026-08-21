@@ -1,0 +1,5 @@
+xship::RegularSpectrum "regular" {
+    period    = option::waves::reg::Period;
+    direction = option::waves::reg::Dir;   
+    amplitude = option::waves::reg::Amp;
+};

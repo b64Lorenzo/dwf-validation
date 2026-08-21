@@ -1,0 +1,52 @@
+model "environment" {
+
+  property references {
+  } // end of property references
+  
+  childs {
+  
+    vbm::GridManager "GridManager" {
+          useCuda = option::vbm::useCuda;
+        };    
+
+    vbm::xsf::Waves "waves" {
+      childs {  
+          include "./wavesField.xmfh"; 
+      };
+      wheeler = option::waves::wheeler;
+      waterDepth = option::waves::depth;                  // leaving this out initializes the waves on a waterDepth of 10000 m 
+    };    
+
+    vbm::WavesModel "vbm" {
+      
+      // ENVIRONMENT
+      gridsize = option::vbm::gridsize;
+      gapsize  = option::vbm::gapsize;
+      depth    = option::waves::depth;
+      
+      useCuda = option::vbm::useCuda;
+
+      // NUMERICS
+      scheme = option::vbm::scheme;
+      integrator = option::vbm::integrator; 
+
+      // BOUNDARIES
+      bcN = option::vbm::bcN;
+      bcS = option::vbm::bcS;
+      bcE = option::vbm::bcE;
+      bcW = option::vbm::bcW;
+
+
+      // MODEL
+      variationalModel = option::vbm::variationalModel;
+      kappa            = option::vbm::kappa;
+      k_boundary       = option::vbm::k_boundary;
+
+      // INCOMING WAVES
+      generateIncomingWaves = option::vbm::generateIncomingWaves;
+      initialCondition      = option::vbm::initialCondition;
+    };
+
+  } // end of childs of "environment"
+
+} // end of "environment"

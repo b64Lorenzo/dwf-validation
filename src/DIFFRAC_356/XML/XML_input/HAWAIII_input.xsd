@@ -1,0 +1,2491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="sim">
+        <xs:annotation>
+          <xs:documentation>This is the simulation, the top object in HAWAIII.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="parHAWAIII">
+              <xs:annotation>
+                <xs:documentation>This is the HAWAIII parameters group. HAWAIII computes the first and second-order wave forces on a single or multi-body system due to waves from an external wave model.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="applyWall">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'applyWall' (boolean) switch. If &quot;true&quot; is selected, then a wall boundary condition will be applied at y=yWall. If &quot;false&quot; is selected the boundary condition is not applied. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="yWall">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>This is y-coordinate of the wall in the global earth-fixed coordinate system. (SI dimension = m) (default value = 0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="waterDepth">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the constant water depth. (SI dimension = m)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="tukeyRatio">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the tukey Ratio which is the ratio of the length of taper section to the total length of the window. (SI dimension = -) (default value = 0.5)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="^0(\.\d+)$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="overlapRatio">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the overlap Ratio which is the ratio of the length of the overlapping part of adjacent windows to the total length of the window. (SI dimension = -) (default value = 0.75)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="^0(\.\d+)$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="gravity">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the acceleration of gravity. (SI dimension = m/s^2) (default value = 9.81)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="windowLength">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the length of the time window for the Fourier Analysis of the wave kinematics time traces (at least 2.25 times as large as the longest period of interest, i.e. natural period of the moored system). (SI dimension = s)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="timeStep">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the time step for the Fourier Analysis of the wave kinematics time traces (smaller than the shortest period of interest). (SI dimension = s)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="maxSimulTime">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the maximum simulation time (should be smaller or equal to the wave model simulation time). (SI dimension = s) (default value = -1)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="maxDifferenceFrequency">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the maximum difference frequency for the 2nd order wave forces. It should be chosen larger than the largest natural frequency of interest. (SI dimension = rad/s) (default value = 0.3)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="runProgram">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the 'run program' (boolean) switch. If &quot;true&quot; is selected, then the program HAWAIII will be run. If &quot;false&quot; is selected the program HAWAIII is not run. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="restart">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'restart' (boolean) switch. If &quot;true&quot; is selected, then the computation is restarted from the existing output database. If false is selected the computation is started from scratch. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="onlyFFT">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'onlyFFT' (boolean) switch. If &quot;true&quot; is selected, then only the FFTs are determined. If &quot;false&quot; is selected the entire HAWAIII program is run. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="skipFFT">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'skipFFT' (boolean) switch. If &quot;true&quot; is selected, then the FFTs are skipped (assume to be done earlier). If &quot;false&quot; is selected then the FFTs are not skipped. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="waveKinematicsType">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the type of wave kinematics used for the coupling between wave model and frequency domain analysis. Choose from WAVEMODELDATABASE and INTERPOLATEDVALUES (SI dimension = -) (value list = INTERPOLATEDVALUES, WAVEMODELDATABASE) (default value = NOT SPECIFIED)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:whiteSpace value="collapse"/>
+                        <xs:enumeration value="INTERPOLATEDVALUES"/>
+                        <xs:enumeration value="WAVEMODELDATABASE"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="waveModelDatabase">
+                    <xs:annotation>
+                      <xs:documentation>This is the waveModelDatabase parameters group. It contains parameters that describe the contents of the wave model database.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element maxOccurs="1" minOccurs="1" name="fileName">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user must specify the database filename(s) containing the wave model output in comma separated format (i.e. file1.nc,file2.nc). The database is in netcdf or h5 format in accordance to the XBEACH output format or XBEACH 3D modified output. (SI dimension = -)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="depthAveragedNormalizedDynamicPressure_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the normalized dynamic pressure on the database. (SI dimension = -) (default value = pres)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="normalizedPressure_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the normalized pressure on the database (used for 3D data). (SI dimension = -) (default value = p)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="bedLevel_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the bed level on the database. (SI dimension = -) (default value = zb)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="waveElevation_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the wave elevation on the database. (SI dimension = -) (default value = zs)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityX_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the x-velocity on the database. (SI dimension = -) (default value = ue)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityY_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the y-velocity on the database. (SI dimension = -) (default value = ve)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityZ_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the z-velocity on the database. (SI dimension = -) (default value = we)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="time_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the time on the database. (SI dimension = -) (default value = globaltime)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="xCoord_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the x-coordinate on the database. (SI dimension = -) (default value = globalx)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="yCoord_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the y-coordinate on the database. (SI dimension = -) (default value = globaly)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="zCoord_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the z-coordinate on the database. (SI dimension = -) (default value = globalz)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="sigma_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the sigma-coordinate on the database. (SI dimension = -) (default value = sigma)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:all>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="interpolatedValues">
+                    <xs:annotation>
+                      <xs:documentation>This is the interpolatedValues parameters group. It contains parameters that describe the contents of the database file with interpolated values (wave kinematics in HAWAIII model points).</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:all>
+                        <xs:element maxOccurs="1" minOccurs="1" name="fileName">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user must specify the database filename containing the wave kinematics interpolated on the points required by the HAWAiii tool. The database is in netcdf or h5 format. (SI dimension = -)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="pressure_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the pressure on the database. (SI dimension = -) (default value = p)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="pressureGradientX_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the pressure gradient in x-direction on the database. (SI dimension = -) (default value = gradpx)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="pressureGradientY_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the pressure gradient in y-direction on the database. (SI dimension = -) (default value = gradpy)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="pressureGradientZ_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the pressure gradient in z-direction on the database. (SI dimension = -) (default value = gradpz)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityX_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the x-velocity on the database. (SI dimension = -) (default value = u)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityY_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the y-velocity on the database. (SI dimension = -) (default value = v)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="velocityZ_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the z-velocity on the database. (SI dimension = -) (default value = w)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="time_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the time on the database. (SI dimension = -) (default value = time)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element maxOccurs="1" minOccurs="0" name="coordinate_varname">
+                          <xs:simpleType>
+                            <xs:annotation>
+                              <xs:documentation>The user may specify the variable name of the coordinates (x,y,z) on the database. (SI dimension = -) (default value = coordinates)</xs:documentation>
+                            </xs:annotation>
+                            <xs:restriction base="xs:string"/>
+                          </xs:simpleType>
+                        </xs:element>
+                      </xs:all>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="bodyIndexTransparant">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the body index of bodies which are transparant to the incoming wave. These are bodies which were already included in the wave model, e.g. &quot;1,2,4&quot; or &quot;1(1)2,4&quot; (without quotation marks). (default value = 0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="dataBaseFn">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the name of the binary database (without extension) on which the hydrodynamic solution and geometry details are stored. (default value = HAWAIII)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:pattern value="^(?!\s*$).+"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="density">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>This is the water density. (SI dimension = tons/m^3) (default value = 1.0260210)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="estimatePressureGradient">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'estimatePressureGradient' (boolean) switch. If &quot;true&quot; is selected, then the pressure gradient is estimated from the velocity time derivative. If &quot;false&quot; is selected the pressure gradient is not estimated. The pressure gradient is needed for the computation of the drift forces. It can also be specified in the wave model database. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="MonitorRelativeWaveHeights">
+                    <xs:annotation>
+                      <xs:documentation>This is the &quot;xml container&quot; of the MonitorRelativeWaveHeights. The user may specify the relative wave height data to be monitored.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="1" ref="MonitorRelativeWaveHeight">
+                          <xs:annotation>
+                            <xs:documentation>The user may specify the relative wave height data to be monitored.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" ref="parDBRESP">
+              <xs:annotation>
+                <xs:documentation>(NO DESCRIPTION AVAILABLE)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" ref="parJOB">
+              <xs:annotation>
+                <xs:documentation>(NO DESCRIPTION AVAILABLE)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="bodies">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the bodies. The user must specify at least one body.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="body">
+                    <xs:annotation>
+                      <xs:documentation>The user must specify at least one body.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="dampingLids">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the dampingLids. The user may specify any number of damping lids. Damping lids can be placed in free surface regions to suppress unrealistic high waves. The part of the damping lid intersecting with the free surface lid inside the body is removed/cut.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="dampingLid">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify any number of damping lids. Damping lids can be placed in free surface regions to suppress unrealistic high waves. The part of the damping lid intersecting with the free surface lid inside the body is removed/cut.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="nProcs">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the number of openMP processors. Negative number means HAWAIII decides the optimum value. (SI dimension = -) (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dampingLid">
+        <xs:annotation>
+          <xs:documentation>This is the dampingLid parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="length">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the length of the damping lid. (SI dimension = m) (default value = -1.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="width">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the width of the damping lid. (SI dimension = m) (default value = -1.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="NrPanelsLength">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of panels along the length of the damping lid. (SI dimension = -) (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="NrPanelsWidth">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of panels along the width of the damping lid. (SI dimension = -) (default value = 1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="dampingValue">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the damping value. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="orientation">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the orientation of the damping lid. (SI dimension = deg) (default value = 0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="origin">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the origin of the centre of the damping lid. (SI dimension = m,m) (default value = 0.0,0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="bodyFixed">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'bodyFixed' (boolean) switch. If &quot;true&quot; is selected, then damp lid is fixed to the body indicated in the 'bodyIndex' field. If &quot;false&quot; is selected the damp lid is not fixed to any body. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="bodyIndex">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the index of the body to which the damping lid belongs. Used when damping lid is body-fixed. (SI dimension = -) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="dampIncWave">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'dampIncWave' (boolean) switch. If &quot;true&quot; is selected, then the incident wave will be damped by the damping lid. If &quot;false&quot; is selected the incoming wave will not be damped by the damping lid (only the radiation and diffraction potentials).</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="meshFn">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the name of the VTK file (including extension) which contains the damplid mesh. (default value = NOT SPECIFIED)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="parVTKDIF">
+        <xs:annotation>
+          <xs:documentation>This is the VTKDIF parameters group. VTKDIF processes the vtk file, determines waterline elements and applies a horizontal shift or yaw rotation if specified. The position of the body/bodies can be viewed by importing the generated file VTKcombined.vtk in paraview.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="runProgram">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the 'run program' (boolean) switch. If &quot;true&quot; is selected, then the program VTKDIF will be run. If &quot;false&quot; is selected the program VTKDIF is not run. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="areaTreshold">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the panel area treshold. Panels with an area smaller than this value are disregarded. (SI dimension = m^2) (default value = 0.002)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="refinementFactor">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the mesh refinement factor 1=no refinement, 2=all panels divided in two, 3=waterline panels divided in four, 4=all panels divided in four (SI dimension = -) (default value = 1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="parINIDIF">
+        <xs:annotation>
+          <xs:documentation>This is the INIDIF parameters group. INIDIF initializes the DIFFRAC database and determines the hydrostatic properties based on the panel geometry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="dataBaseFn">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the name of the binary database (without extension) on which the hydrodynamic solution and geometry details are stored.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="quay">
+              <xs:annotation>
+                <xs:documentation>This is the quay parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="apply">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'apply' (boolean) switch. If &quot;true&quot; is selected, then a quay is modelled with a symmetry plane at y=yQuay. If false is selected, no quay is modelled. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="yQuay">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>This is y-coordinate of the quay in the global earth-fixed coordinate system. (SI dimension = m) (default value = 0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="basinWall">
+              <xs:annotation>
+                <xs:documentation>This is the basin Wall parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="apply">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'apply' (boolean) switch. If &quot;true&quot; is selected, then a basin wall is modelled using 2 symmetry planes defined by x=xBasin and y=yBasin. If &quot;false&quot; is selected then no basin wall is modelled. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="origin">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>This is origin (xBasin, Ybasin) where the two basin walls x=xBasin and y=yBasin cross. (SI dimension = m) (default value = 0.,0.)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="density">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the water density. (SI dimension = tons/m^3) (default value = 1.0260210)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="springMatrix">
+              <xs:annotation>
+                <xs:documentation>This is the spring Matrix parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="fromGeometry">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the 'fromGeometry' (boolean) switch. If &quot;true&quot; is selected, then the spring matrix is computed from the position of the centre of gravity and the panel mesh (so hydrostatics only). If &quot;false&quot; is selected then the spring matrix is imported from a space separated file with 6*Nbody rows amd 6*Nbody columns. (default value = true)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="springMatrixFn">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the name of the file (including extension) which contains the (6*Nbody)*(6*Nbody) spring matrix. The file must be space separated. (default value = NOT SPECIFIED)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="refPntFn">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the name of the file (including extension) which contains the coordinates of the reference points. The reference points must be defined in the global earth-fixed coordinate system. Each line of the file should contain 1 reference point with space separated values (x,y,z). (default value = NONAME)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="dampLids">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the dampLids. The user may specify any number of damping lids. Damping lids can be placed in free surface regions to suppress unrealistic high waves. The part of the damping lid intersecting with the free surface lid inside the body is removed/cut.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="dampLid">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify any number of damping lids. Damping lids can be placed in free surface regions to suppress unrealistic high waves. The part of the damping lid intersecting with the free surface lid inside the body is removed/cut.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="turbines">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the turbines. The user may specify any number of OWC (Oscillating Water Column) turbines.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="turbine">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify any number of OWC (Oscillating Water Column) turbines.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="runProgram">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the 'run program' (boolean) switch. If &quot;true&quot; is selected, then the program INIDIF will be run. If &quot;false&quot; is selected the program INIDIF is not run. Be aware that when inidif is run, old databases (mandat/hdf5) will be deleted! (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="grids">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the grids. The user may specify a grid on which wave kinematics are calculated.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="grid">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify a grid on which wave kinematics are calculated.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="parDBRESP">
+        <xs:annotation>
+          <xs:documentation>This is the DBRESP parameters group. DBRESP recomputes the response of the body/bodies with possible additional damping, new springs, new mass matrix and new position of Centre of Gravity.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="BodyInputs">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the BodyInputs. The user may specify the DBRESP input for each body.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="BodyInput">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify the DBRESP input for each body.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="runProgram">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the 'run program' (boolean) switch. If &quot;true&quot; is selected, then the program DBRESP will be run. If &quot;false&quot; is selected the program DBRESP is not run. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="solverType">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the solver for the equation of motion matrix: GMRES = Generalized Minimal Residual Method; LU = incomplete lower-upper decomposition method (value list = GMRES_ILU, LU) (default value = LU)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="GMRES_ILU"/>
+                  <xs:enumeration value="LU"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="springMatrix">
+              <xs:annotation>
+                <xs:documentation>This is the springmatrix parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="1" name="fileName">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the name of the file (including extension) which contains the (6*Nbody)*(6*Nbody) spring matrix. The file must be space separated. (default value = NOT SPECIFIED)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="isEarthFixed">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the 'isEarthFixed' (boolean) switch. If &quot;true&quot; is selected, then the N-body spring matrix is assumed to be defined in the earth-fixed reference system.  If &quot;false&quot; is selected, then the N-body spring matrix is assumed to be defined in the ship-fixed reference system. (default value = true)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="unit">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the unit used for the spring matrix (N/kN) (SI dimension = -) (value list = kN, N) (default value = kN)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:whiteSpace value="collapse"/>
+                        <xs:enumeration value="kN"/>
+                        <xs:enumeration value="N"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="dampingMatrix">
+              <xs:annotation>
+                <xs:documentation>This is the dampingMatrix parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="1" name="fileName">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the name of the file (including extension) which contains the (6*Nbody)*(6*Nbody) damping matrix. The file must be space separated. (default value = NOT SPECIFIED)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="isEarthFixed">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the 'isEarthFixed' (boolean) switch. If &quot;true&quot; is selected, then the N-body damping matrix is assumed to be defined in the earth-fixed reference system.  If &quot;false&quot; is selected, then the N-body damping matrix is assumed to be defined in the ship-fixed reference system. (default value = true)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="unit">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the unit used for the damping matrix (N/kN) (SI dimension = -) (value list = kN, N) (default value = kN)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:whiteSpace value="collapse"/>
+                        <xs:enumeration value="kN"/>
+                        <xs:enumeration value="N"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="joints">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the joints. The user may specify joints between bodies.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="joint">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify joints between bodies.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="parJOB">
+        <xs:annotation>
+          <xs:documentation>This is the JOB generation parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="System">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the system name for which job script, with adecquated parallelization parameters, will be generated.  If USERDEF is chosen then Hardware_ inputs can be provided with local Hardware settings. If any of MARIN MARCLUS clusters is chosen then MARIN_Queue and MARIN_NrMaxNodesUse can be provided. (value list = MARCLUS5,MARCLUS4,MARCLUS3,USERDEF) (default value = USERDEF)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="MARCLUS5"/>
+                  <xs:enumeration value="MARCLUS4"/>
+                  <xs:enumeration value="MARCLUS3"/>
+                  <xs:enumeration value="USERDEF"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MARCLUS_Queue">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the Cluster queue for MARCLUS MARIN clusters. (value list = LARGE, NORMAL, SHORT, GPU) (default value = NORMAL)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="LARGE"/>
+                  <xs:enumeration value="NORMAL"/>
+                  <xs:enumeration value="SHORT"/>
+                  <xs:enumeration value="GPU"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MARCLUS_NrMaxNodesUse">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the maximun number of computing nodes to be used. Defatult values are MARCLUS5(2/32/6), MARCLUS4(2/10/10) and MARCLUS3(2/2/2) for (LARGE,NORMAL/SHORT) queues respectively. (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="Hardware_NrThreadNod">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of threads available per computing node. If not provided DIFFRAC will check it by itself (default). (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="Hardware_NrMaxNodes">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the maximun number of computing nodes that can be used. (default value = 1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="Hardware_MemPerNode">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the memory available per computing node in Gb. If not provided DIFFRAC will check it by itself (default). (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="UserDef">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is user defined code added after DIFFRACSUITE call on the job file. Limit lenght is 10000 charachters. Windows: batch; Linux: bash. (default value = echo &quot;//&quot; end of file &quot;//&quot;)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemConsumption_A">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>(A+B*NPanels+(C*NPanels)*NPanels)*(NCond*D) (default value = 0.1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemConsumption_B">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>(A+B*NPanels+(C*NPanels)*NPanels)*(NCond*D) (default value = 0.0002)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemConsumption_C">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>(A+B*NPanels+(C*NPanels)*NPanels)*(NCond*D) (default value = 0.0000000055)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="MemConsumption_D">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>(A+B*NPanels+(C*NPanels)*NPanels)*(NCond*D) (default value = 0.00000001)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="body">
+        <xs:annotation>
+          <xs:documentation>body</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="mesh">
+              <xs:annotation>
+                <xs:documentation>This is the body mesh parameters group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="1" name="meshFn">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the name of the VTK file (including extension) which contains the hydrodynamic mesh.</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:pattern value="^(?!\s*$).+"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="invertNormals">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'invertNormals' (boolean) switch. If &quot;true&quot; is selected, then the normal direction of the panels will be inverted. (default value = false)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="checkClosedWaterLine">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the 'checkClosedWaterLine' (boolean) switch. If &quot;true&quot; is selected, then it will be checked if the waterline is closed (important for consistent drift forces). If &quot;false&quot; is selected then the check is not made. (default value = true)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="scaleFactorX">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Scale factor X direction (SI dimension = -) (default value = 1.0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="scaleFactorY">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Scale factor Y direction (SI dimension = -) (default value = 1.0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="scaleFactorZ">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>Scale factor Z direction (SI dimension = -) (default value = 1.0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float">
+                        <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="position">
+              <xs:annotation>
+                <xs:documentation>The position (x,y) of the body origin and the rotation around the origin.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="translation">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the translation (x,y,z) of the body origin (SI dimension = m,m) (default value = 0.,0.,0.)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string">
+                        <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="rotation">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the yaw rotation of the body around its origin (0,0,0) in the mesh file. (SI dimension = deg) (default value = 0.)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="rotationOrigin">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the rotation origin (x,y) with respect to the origin of the mesh file (SI dimension = m,m) (default value = 0.,0.)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="massElements">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the massElements. This is the body inertial properties group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="massElement">
+                    <xs:annotation>
+                      <xs:documentation>This is the body inertial properties group.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="hstat">
+              <xs:annotation>
+                <xs:documentation>This is the body hydrostatic properties group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:all>
+                  <xs:element maxOccurs="1" minOccurs="0" name="checkEqual_CoB_CoG">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user may specify the 'checkEqual_CoB_CoG' (boolean) switch. If &quot;true&quot; is selected, then a check is made on equal COB and COG in the horizontal plane. If &quot;false&quot; is selected the check is not made. (default value = true)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="lengthBetweenPerp">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the body length between perpendiculars (L_pp). (SI dimension = m)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="0" name="beam">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specify the beam (width) of the body (B). (SI dimension = m) (default value = 0.0)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element maxOccurs="1" minOccurs="1" name="draft">
+                    <xs:simpleType>
+                      <xs:annotation>
+                        <xs:documentation>The user must specifiy the draft. This is the draft at the location of the center of gravity. (SI dimension = m)</xs:documentation>
+                      </xs:annotation>
+                      <xs:restriction base="xs:float"/>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="isTransparant">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'isTransparant' (boolean) switch. If &quot;true&quot; is selected, then the body will be transparant to incoming waves. If &quot;false&quot; is selected then the body is not transparant to incoming waves. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the name of the body.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="isFixed">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'isFixed' (boolean) switch. If &quot;true&quot; is selected, then the body is fixed and cannot move. If &quot;false&quot; is selected, then the body is not fixed and can move. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="checkDisplacement">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'checkDisplacement' (boolean) switch. If &quot;true&quot; is selected, then the sign of the displacement is checked. If &quot;false&quot; is selected the sign of the displacement is not checked. A wrong sign is an indication of a wrong normal direction (only for closed bodies). (default=true) (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="referencePoint">
+        <xs:annotation>
+          <xs:documentation>This is the referencePoint parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="coordinate">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the coordinate (x,y,z) of the reference point. (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MonitorFloaterData">
+        <xs:annotation>
+          <xs:documentation>This is the MonitorFloaterData group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="bodyIndex">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="acceleration">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'acceleration' (boolean) switch. If &quot;true&quot; is selected, then the acceleration response is exported. If false is selected, then the acceleration response is not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="waveForces">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'waveForces' (boolean) switch. If &quot;true&quot; is selected, then the wave forces are exported. If false is selected, then the wave forces are not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="meanDriftForces">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'meanDriftForces' (boolean) switch. If &quot;true&quot; is selected, then the body meanDriftForces are exported. If false is selected, then the body meanDriftForces are not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="PQ">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'PQ' (boolean) switch. If &quot;true&quot; is selected, then the P and Q drift force matrices are exported. If false is selected, then the P and Q drift force matrices are not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="waveSlopeCorrection">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify whether the response (rotations) must be made non-dimensional using the wave slope (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the name of the monitor, used for storing on h5m and for the ASCII filename</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="posWrtKeel">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the coordinates (x,y,z, in CSV format) of the point with respect to the origing of the body mesh file (x,y) and wrt keel (z). (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="velocity">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'velocity' (boolean) switch. If &quot;true&quot; is selected, then the velocity response is exported. If false is selected, then the velocity response is not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="relativeVelocity">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'relativeVelocity' (boolean) switch (motion induced velocity minus water velocity). If &quot;true&quot; is selected, then the relative velocity response is exported. If false is selected, then the relative velocity response is not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="motion">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'motion' (boolean) switch. If &quot;true&quot; is selected, then the motion response is exported. If false is selected, then the motion response is not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="accelerationType">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the method for computing the acceleration: SHIP-FIXED (INCLUDING GRAVITY CORRECTION); EARTH-FIXED (EXCLUDING GRAVITY CORRECTION); (SI dimension = -) (value list = SHIP-FIXED (INCLUDING GRAVITY CORRECTION), EARTH-FIXED (EXCLUDING GRAVITY CORRECTION)) (default value = SHIP-FIXED (INCLUDING GRAVITY CORRECTION))</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="SHIP-FIXED (INCLUDING GRAVITY CORRECTION)"/>
+                  <xs:enumeration value="EARTH-FIXED (EXCLUDING GRAVITY CORRECTION)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="addedMassDamping">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'addedMassDamping' (boolean) switch. If &quot;true&quot; is selected, then the added mass and damping is exported. If false is selected, then the added mass and damping is not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="naturalFrequency">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'naturalFrequency' (boolean) switch. If &quot;true&quot; is selected, then the naturalFrequencies are exported (coupled and uncoupled). If false is selected, then the naturalFrequencies are not exported. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MonitorInternalLoad">
+        <xs:annotation>
+          <xs:documentation>This is the MonitorInternalLoad group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" ref="cut">
+              <xs:annotation>
+                <xs:documentation>The user may specify a cut in which internal loads are computed.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MonitorRelativeMotion">
+        <xs:annotation>
+          <xs:documentation>This is the MonitorRelativeMotion group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the name of the monitor, used for storing on h5m and for the ASCII filename</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="relMotionBodyInputs">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the relMotionBodyInputs. The user must specify input for two bodies to compute the relative motions.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="2" ref="relMotionBodyInput">
+                    <xs:annotation>
+                      <xs:documentation>The user must specify input for two bodies to compute the relative motions.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MonitorFlowData">
+        <xs:annotation>
+          <xs:documentation>This is the MonitorFlowData group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="grids">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the grids. The user must specify a grid of coordinates (x,y,z) of reference points, in the global earth-fixed reference frame. In these points the flow data is computed.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="grid">
+                    <xs:annotation>
+                      <xs:documentation>The user must specify a grid of coordinates (x,y,z) of reference points, in the global earth-fixed reference frame. In these points the flow data is computed.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MonitorRelativeWaveHeight">
+        <xs:annotation>
+          <xs:documentation>This is the MonitorRelativeMotion group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the name of the monitor, used for storing on h5m and for the ASCII filename</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" ref="relWaveHeightBodyInput">
+              <xs:annotation>
+                <xs:documentation>The user must specify input to compute the relative wave heights.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="includeIncidentWave">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'includeIncidentWave' (boolean) switch. If &quot;true&quot; is selected, then the incident wave is included. If &quot;false&quot; is selected the incident wave is not included. (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="includeDiffractedWave">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'includeDiffractedWave' (boolean) switch. If &quot;true&quot; is selected, then the diffracted wave is included. If &quot;false&quot; is selected the diffracted wave is not included. (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="includeRadiatedWave">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'includeRadiatedWave' (boolean) switch. If &quot;true&quot; is selected, then the radiated wave is included. If &quot;false&quot; is selected the radiated wave is not included. (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="includeMotions">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'includeMotions' (boolean) switch. If &quot;true&quot; is selected, then the vertical motions are included. If &quot;false&quot; is selected the vertical motions ar not included. (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dampLid">
+        <xs:annotation>
+          <xs:documentation>This is the dampLid parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="length">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the length of the damping lid. (SI dimension = m) (default value = -1.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="width">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the width of the damping lid. (SI dimension = m) (default value = -1.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="NrPanelsLength">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of panels along the length of the damping lid. (SI dimension = -) (default value = -1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="NrPanelsWidth">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of panels along the width of the damping lid. (SI dimension = -) (default value = 1)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="dampingValue">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the damping value. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="orientation">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the orientation of the damping lid. (SI dimension = deg) (default value = 0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="turbineIndex">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the index of the turbine to which the damping lid belongs. Use index zero when this damping lid is not related to any turbine. (SI dimension = -) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="origin">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the origin of the centre of the damping lid. (SI dimension = m,m) (default value = 0.0,0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="bodyFixed">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'bodyFixed' (boolean) switch. If &quot;true&quot; is selected, then damp lid is fixed to the body indicated in the 'bodyIndex' field. If &quot;false&quot; is selected the damp lid is not fixed to any body. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="bodyIndex">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the index of the body to which the damping lid belongs. Used when damping lid is body-fixed. (SI dimension = -) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="dampIncWave">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'dampIncWave' (boolean) switch. If &quot;true&quot; is selected, then the incident wave will be damped by the damping lid. If &quot;false&quot; is selected the incoming wave will not be damped by the damping lid (only the radiation and diffraction potentials).</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="meshFn">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the name of the VTK file (including extension) which contains the damplid mesh. (default value = NOT SPECIFIED)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="BodyInput">
+        <xs:annotation>
+          <xs:documentation>This is the DBRESP input for a single body.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="massElements">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the massElements. This is the body inertial properties group.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="massElement">
+                    <xs:annotation>
+                      <xs:documentation>This is the body inertial properties group.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="totalDampings">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the totalDampings. The user may specify the total damping for the 6 motion modes.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="totalDamping">
+                    <xs:annotation>
+                      <xs:documentation>The user may specify the total damping for the 6 motion modes.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="freezes">
+              <xs:annotation>
+                <xs:documentation>This is the &quot;xml container&quot; of the freezes. The user may freeze each of the 6 motion modes.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" minOccurs="1" ref="freeze">
+                    <xs:annotation>
+                      <xs:documentation>The user may freeze each of the 6 motion modes.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="turbine">
+        <xs:annotation>
+          <xs:documentation>This is the turbine parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="constant">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the turbine constant, which determines the flow rate through the turbine. (SI dimension = s^2/m^2.5)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="turbineType">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The use may specify the turbine type (LINEAR, KNSWING) (value list = LINEAR,KNSWING) (default value = LINEAR)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="LINEAR"/>
+                  <xs:enumeration value="KNSWING"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="bodyIndex">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the index of the body to which the turbine belongs. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relativeMotions">
+        <xs:annotation>
+          <xs:documentation>This is the relative motions parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="body1Index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the first body for relative motion computation. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="body2Index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the second body for relative motion computation. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="apply">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'apply' (boolean) switch. If &quot;true&quot; is selected, then the relative motions are computed. If false is selected, then relative motions are not computed. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="subset">
+        <xs:annotation>
+          <xs:documentation>This is the subSet parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="option">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the identity of the subset (value list = frequency, waterDepth, waveDirection, bodyIndex)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="frequency"/>
+                  <xs:enumeration value="waterDepth"/>
+                  <xs:enumeration value="waveDirection"/>
+                  <xs:enumeration value="bodyIndex"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="relation">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the relation operator (value list = ==, &lt;&gt;, &gt;, &lt;, =&lt; =&gt;)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="=="/>
+                  <xs:enumeration value="&lt;&gt;"/>
+                  <xs:enumeration value="&gt;"/>
+                  <xs:enumeration value="&lt;"/>
+                  <xs:enumeration value="=&lt; =&gt;"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="value">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the value for relation check</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="logicalOperator">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the logical operator (value list = &amp;, , ||)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="&amp;"/>
+                  <xs:enumeration value=""/>
+                  <xs:enumeration value="||"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="totalDamping">
+        <xs:annotation>
+          <xs:documentation>This is the body totalDamping properties group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="mode">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the mode to which the damping must be applied. (SI dimension = -) (value list = SURGE, SWAY, HEAVE, ROLL, PITCH, YAW)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="SURGE"/>
+                  <xs:enumeration value="SWAY"/>
+                  <xs:enumeration value="HEAVE"/>
+                  <xs:enumeration value="ROLL"/>
+                  <xs:enumeration value="PITCH"/>
+                  <xs:enumeration value="YAW"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="value">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the total damping value expressed as dimension-full damping value or as percentage of critical damping (then there must be a restoring term present!) (SI dimension = kN-s-rad or %)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="type">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the way the damping-value is interpreted. % of critical damping (total): damping is computed as % of crticial damping and interpreted as total damping including potential damping. dimension-full value (total): actual dimension-full damping value interpreted as total damping including potential damping. dimension-full value (added viscous damping): actual dimension-full damping value interpreted as added viscous damping excluding potential damping (SI dimension = -) (value list = % of critical damping (total), dimension-full value (total), dimension-full value (added viscous damping))</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="% of critical damping (total)"/>
+                  <xs:enumeration value="dimension-full value (total)"/>
+                  <xs:enumeration value="dimension-full value (added viscous damping)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="allowNegativeAddedDamping">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the boolean that inicates if the added/viscous damping is allowed to be negative or not. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="freeze">
+        <xs:annotation>
+          <xs:documentation>This is the body freeze properties group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="mode">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the mode which must be frozen. (SI dimension = -) (value list = SURGE, SWAY, HEAVE, ROLL, PITCH, YAW)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="SURGE"/>
+                  <xs:enumeration value="SWAY"/>
+                  <xs:enumeration value="HEAVE"/>
+                  <xs:enumeration value="ROLL"/>
+                  <xs:enumeration value="PITCH"/>
+                  <xs:enumeration value="YAW"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="value">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the boolean that inicates if the mode must be frozen or not. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="grid">
+        <xs:annotation>
+          <xs:documentation>This is the grid parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="spacing_x">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the grid spacing (distance between the points) in x-direction. (SI dimension = m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="spacing_y">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the grid spacing (distance between the points) in y-direction. (SI dimension = m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="spacing_z">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the grid spacing (distance between the points) in z-direction. (SI dimension = m) (default value = 0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="NrOfPointsX">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of grid points in x-direction. The number should be odd. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="origin">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the origin (x,y,z) of the grid. z=0 corresponds to the free surface (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="orientation">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the orientation of the grid in degrees. (SI dimension = deg) (default value = 0.0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="NrOfPointsY">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of grid points in y-direction. The number should be odd. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="NrOfPointsZ">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the number of grid points in y-direction. The number should be odd. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="referencePoint2D">
+        <xs:annotation>
+          <xs:documentation>This is the referencePoint2D parameters group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="coordinate">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the coordinate (x,y) of the 2D reference point. (SI dimension = m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d+)?)*$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relMotionBodyInput">
+        <xs:annotation>
+          <xs:documentation>This is the input for a single body to compute relative motions or wave heights.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" ref="referencePoint">
+              <xs:annotation>
+                <xs:documentation>The user must specify a reference point on the body to compute the relative motions. This point is given in the ship-fixed reference frame relative to the origin of the mesh file.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sloshing">
+        <xs:annotation>
+          <xs:documentation>This is the sloshing input.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="apply">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'apply' (boolean) switch. If &quot;true&quot; is selected, then a sloshing analysis is performed. If &quot;false&quot; is selected a sloshing analysis is not performed. (default value = false)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="greenFunction">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the type of Green Function used in the sloshing analysis. Full: frequency-dependent finite water depth Green Function. RANKINE: Rankine source only. (SI dimension = -) (value list = FULL, RANKINE) (default value = FULL)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="FULL"/>
+                  <xs:enumeration value="RANKINE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relWaveHeightBodyInput">
+        <xs:annotation>
+          <xs:documentation>This is the input for a single body to compute relative wave heights.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" ref="referencePoint2D">
+              <xs:annotation>
+                <xs:documentation>The user must specify a reference point on the body to compute the relative motions (x,y only). This point is given in the ship-fixed reference frame relative to the origin of the mesh file.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="massElement">
+        <xs:annotation>
+          <xs:documentation>This is the body inertial properties group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="COGwrtKeel">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the center of gravity of the mass element. X and Y  (horizontal) with respect to the origin of the mesh. Z (vertical) with respect to the keel. (SI dimension = m, m, m). (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="mass">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is mass of the mass element. (SI dimension = tons)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="rollRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the roll radius of gyration of the mass element (k_xx). Defined with respect to the mass element center of gravity (SI dimension = m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="pitchRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the pitch radius of gyration of the mass element (k_yy). Defined with respect to the mass element center of gravity (SI dimension = m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="yawRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the yaw radius of gyration of the mass element (k_zz). Defined with respect to the mass element center of gravity (SI dimension = m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float">
+                  <xs:pattern value="-?(\d\.?\d*[Ee][+\-]?\d+|[0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="rollPitchRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the body roll-pitch radius of gyration. (k_xy) (SI dimension = m) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="rollYawRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the body roll-yaw radius of gyration. (k_xz) (SI dimension = m) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="pitchYawRadiusGyr">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the body pitch-yaw radius of gyration. (k_yz) (SI dimension = m) (default value = 0)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="cut">
+        <xs:annotation>
+          <xs:documentation>cut</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="1" name="index">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body in which the cut is located. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="posWrtKeel">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the coordinates (x,y,z, in CSV format) of the cut position with respect to the origing of the body mesh file (x,y) and wrt keel (z). (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="normal">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the cut normal vector which defines the longitudinal direction of the cut. (default value = 1.,0.,0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="trvsTangent">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the cut transverse tangent vector which defines the transverse direction of the cut. (default value = 0.,1.,0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the name of the monitor, used for storing on h5m and for the ASCII filename</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^(?!\s*$).+"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="referenceSystem">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the reference system for calculating the internal loads: SHIP-FIXED; CUT-FIXED; (SI dimension = -) (value list = SHIP-FIXED, CUT-FIXED) (default value = CUT-FIXED)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="SHIP-FIXED"/>
+                  <xs:enumeration value="CUT-FIXED"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="joint">
+        <xs:annotation>
+          <xs:documentation>joint</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:all>
+            <xs:element maxOccurs="1" minOccurs="0" name="name">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the name of the joint.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c11">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the surge stiffness of the joint. (SI dimension = kN/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c22">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the sway stiffness of the joint. (SI dimension = kN/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c33">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the heave stiffness of the joint. (SI dimension = kN/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c44">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the roll stiffness of the joint. (SI dimension = kNm/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c55">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the pitch stiffness of the joint. (SI dimension = kNm/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="c66">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the yaw stiffness of the joint. (SI dimension = kNm/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b11">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the surge damping of the joint. (SI dimension = kNs/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b22">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the sway damping of the joint. (SI dimension = kNs/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b33">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the heave damping of the joint. (SI dimension = kN/m) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b44">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the roll damping of the joint. (SI dimension = kNms/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b55">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the pitch damping of the joint. (SI dimension = kNms/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="b66">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the yaw damping of the joint. (SI dimension = kNms/rad) (default value = 0.)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="index1">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the first body the joint is connected to. Index zero means connection to earth. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="^([1-9]\d*|0)$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="index2">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the second body the joint is connected to. Index zero means connection to earth. (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="^([1-9]\d*|0)$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="posWrtKeel1">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the coordinates (x,y,z) of the joint position with respect to the origin of the mesh file (x,y) and wrt keel (z) of the 1st body. (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="posWrtKeel2">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the coordinates (x,y,z) of the joint position with respect to the origin of the mesh file (x,y) and wrt keel (z) of the 2nd body. (SI dimension = m,m,m)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="^ *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *, *[-+]?[0-9]+\.?[0-9]*([eE][-+]?[0-9]+)? *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="coordSystem">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user must specify the index of the body in whose coordinate system the joint stiffness/damping values are defined (SI dimension = -)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer">
+                  <xs:pattern value="[1-9][0-9]*"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="unit">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the unit used for the joint spring/damper (N/kN) (SI dimension = -) (value list = kN, N) (default value = kN)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                  <xs:whiteSpace value="collapse"/>
+                  <xs:enumeration value="kN"/>
+                  <xs:enumeration value="N"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="checkSameLocation">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>The user may specify the 'checkSameLocation' (boolean) switch. If &quot;true&quot; is selected, then a check is made if the joint positions on the 2 bodies it connects are the same in the eath-fixed frame of reference. If &quot;false&quot; is selected the check is not made. (default value = true)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="^ *true|TRUE|1|false|FALSE|0 *$"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="allowedDistance">
+              <xs:simpleType>
+                <xs:annotation>
+                  <xs:documentation>This is the allowed distance between the two joint positions. (SI dimension = kNms/rad) (default value = 0.001)</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>

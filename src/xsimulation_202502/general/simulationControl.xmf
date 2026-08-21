@@ -1,0 +1,17 @@
+model "simulationControl" {
+
+  property references {
+      ref::time::step = "timeStep@^*/control";
+      ref::time::end = "endTime@^*/control";
+  } // end of property references
+
+  childs {
+    
+    xmf::SimulationControl "control" = {
+      timeStep = option::sim::timeStep;  // [s]
+      endTime  = option::sim::endTime; // [s]
+    }; // end of "control"
+  
+  } // end of childs of "simulationControl"
+
+} // end of "simulationControl"

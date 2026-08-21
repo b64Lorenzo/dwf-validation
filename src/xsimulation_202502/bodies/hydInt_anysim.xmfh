@@ -1,0 +1,5 @@
+xship::HydInteraction "hydInt" {
+  hydDbName = "/*/hydDb";
+  body = "^*/floater/body";
+  hydDbIndex = 0;
+}; // end of "hydInt" 

@@ -1,0 +1,18 @@
+model "environment" {
+
+  property references {
+  } // end of property references
+  
+  childs {
+    
+    xship::Current "current" {};
+      
+    xsf::Waves "waves" {
+      childs {  
+          include "./wavesField.xmfh"; 
+      };
+      wheeler = option::waves::wheeler;
+      waterDepth = option::waves::depth;                  // leaving this out initializes the waves on a waterDepth of 10000 m 
+    };    
+  };
+};

@@ -1,0 +1,16 @@
+model "callbacks" {
+    int count = 1;
+    callbacks {
+        vbm::callbacks::WavesParaviewCallback "*/vbm" {
+            field = "zeta";
+            startCount = 0;        // Starts saving data from 0s
+            saveCount = option::logger::saveCount;        //Saves data every 25th time step
+            //outputDir =  option::logger::outputDir;
+        };  
+    }
+}
+
+
+
+
+

@@ -1,0 +1,17 @@
+/// floater ///  
+input string floaterMetaData               = "./FLNG/flng.xml";
+input double roll                          = 0.0 deg;                 // [deg]
+input double pitch    = 0.0 deg;                 // [deg] (tf - ta) / lpp
+input double yaw      = 0.0 deg;                 // [deg] (initial heading north)  
+input double mass = 1080000; // [kg]
+input double kxx = 30; //[m]
+input double kyy = 200; //[m]
+input double kzz = 200; //[m]   
+input double lpp = 500; // [m]
+input double ta = 30; // [m]
+input double tf = 30; // [m]
+input double beam = 72; // [m]
+input relcom = {0, 0.0, 25}; // [m, m, m]
+   
+input string geometryFile = "../../../data/FLNG/geometry/M8383.stl";    
+input string shape = "../../../data/FLNG/geometry/M8383.stl";

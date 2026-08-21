@@ -1,0 +1,56 @@
+model "floater" { 
+
+  property references {
+    
+  }
+  
+  include "./" + option::ships::bodyName + "/metadata.xmfh";
+  
+  childs {        
+       
+      xsf::BodyOde "body" = {  
+        childs {  
+          vbm::InteractionControl "vbm_ic_ship"  = {
+            geometryFile        = geometryFile;
+            interactionType     = option::vbm::interactionType;
+          };  
+          xsf::Visualisation "visualisation" {
+            geometryFile = geometryFile;
+          }; // end of "visualisation"
+          
+          vbm::InteractionControl "vbm_probes" = {
+            childs {
+               include "../logger/wavesProbes/wavesProbes_" + option::sim::grid + "_" + option::logger::probeDist + ".xmfh";
+            };
+            interactionType = "hydrostatics";
+          };
+        };
+        
+        mgl::metaData <<? floaterMetaData;
+    
+        roll     = roll;                 // [deg]
+        pitch    = pitch;                 // [deg] (tf - ta) / lpp
+        yaw      = yaw;                 // [deg] (initial heading north)
+        mass = mass; // [kg]
+        kxx = kxx; //[m]
+        kyy = kyy; //[m]
+        kzz = kzz; //[m]   
+        refpos = option::ships::refpos; // [m, m, m]
+        orientation = option::ships::orientation; // [rad, rad, rad]
+        relcom = relcom; // [m, m, m]
+        position = option::ships::position; 
+    
+        bodyFixedVelocity = option::ships::bodyFixedVelocity;
+        bodyFixedRotation = option::ships::bodyFixedRotation;
+        enableVisualisation = true;
+        kinematic = option::ships::kinematic; 
+        freezeSurge = option::ships::freezeSurge;
+        freezeSway = option::ships::freezeSway;
+        freezeHeave = option::ships::freezeHeave;
+        freezeRoll = option::ships::freezeRoll;
+        freezePitch = option::ships::freezePitch;
+        freezeYaw = option::ships::freezeYaw;
+        
+      };
+   };
+};

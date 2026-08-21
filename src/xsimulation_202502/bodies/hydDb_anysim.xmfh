@@ -1,0 +1,4 @@
+xship::HydDb "hydDb" {
+  filename = "../../../../../../../data/" + option::ships::bodyName + "/databases/" + option::ships::bodyPan + "_isFixed" + option::sim::isFixed + ".hyd";
+  hydCenter = "0 {135.934, 0, 16.3}";
+}; // end of "hydDb"

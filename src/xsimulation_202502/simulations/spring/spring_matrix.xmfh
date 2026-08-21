@@ -1,0 +1,9 @@
+instance "*/floater/body" {
+  append childs {
+    xship::SpringMatrix "springmatrix" {
+      c11 = 300e3;
+      c22 = 400e3;
+      c66 = 800e6;
+    }; // end of "springmatrix"
+  };
+};

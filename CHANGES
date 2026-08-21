@@ -1,0 +1,39 @@
+1
+==
+
+1.0.0
+------
+
+::`February 2026`
+
+What's new
+^^^^^^^^^^
+
+- Project Set Up
+
+
+1.0.1
+------
+
+::`31 March 2026`
+
+What's new
+^^^^^^^^^^
+
+- Rebranding Name data_analysis folder into pyanalyzer
+- Setting Up pyanalyzer package 
+
+
+1.0.2
+------
+
+::`7 April 20261
+
+What's new
+^^^^^^^^^^
+
+- MultiGen powershell application for dynamically create files from a template and configuration file.
+- Template files for DIFFRAC and xSimulation
+- Amendments runAll files for DIFFRAC and xSimulation
+
+

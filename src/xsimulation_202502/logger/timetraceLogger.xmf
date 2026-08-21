@@ -1,0 +1,62 @@
+model "timeTraceLogger" {
+
+  property references {
+    ref::tracFile = "tracfile@*/logger";
+    ref::statFile = "statfile@*/logger";
+    ref::statBegin = "statbegin@*/logger";
+    ref::cullCount = "cullCount@*/logger";
+    ref::channels = "channels@*/logger";
+  } // end of property references
+
+  childs {
+
+    xmf::TimetraceLogger "logger" {
+			tracfile = option::logger::tracFile;
+      statfile = option::logger::statfile;
+      statbegin = option::logger::statbegin;
+      printUnits = option::logger::printUnits;
+      unitEnclosure = option::logger::unitEnclosure;
+      delimiter = option::logger::delimiter;
+      insertUTC = option::logger::insertUTC;
+      actualTime = option::logger::actualTime;
+	  cullCount= option::logger::cullCount;
+			
+      // position of CoG of body
+      channels = "/*/body, position(0), Xcog";
+      channels = "/*/body, position(1), Ycog";
+      channels = "/*/body, position(2), Zcog";
+      // orientation of the body 
+      channels = "/*/body, roll,        ROLL";
+      channels = "/*/body, pitch,       PITCH";
+      channels = "/*/body, yaw,         YAW";
+      // position of origin of body
+      channels = "/*/body, refpos(0),   Xref";
+      channels = "/*/body, refpos(1),   Yref";
+      channels = "/*/body, refpos(2),   Zref";
+      // velocity of the body
+      channels = "/*/body, velocity(0), Vx";
+      channels = "/*/body, velocity(1), Vy";
+      channels = "/*/body, velocity(2), Vz";
+      // rotation of the body
+      channels = "/*/body, rotation(0), VRx";
+      channels = "/*/body, rotation(1), VRy";
+      channels = "/*/body, rotation(2), VRz";
+      // total force on the body
+      channels = "/*/body, force(0),    totFx";
+      channels = "/*/body, force(1),    totFy";
+      channels = "/*/body, force(2),    totFz";
+      // total moment on the body
+      channels = "/*/body, moment(0),   totMx";
+      channels = "/*/body, moment(1),   totMy";
+      channels = "/*/body, moment(2),   totMz";    
+
+      // Applied Wave Amplitude
+      channels = "/*/regular, amplitude, waveAmp";      
+      
+      
+      
+    }; // end of "logger" 
+
+  } // end of childs of "timeTraceLogger"
+
+} // end of "timeTraceLogger"

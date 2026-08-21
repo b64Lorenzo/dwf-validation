@@ -1,0 +1,342 @@
+xsf::WaveProbe "probe_inc" = {
+  position = {1000, 0, option::logger::waveProbes_z};
+};
+
+//xsf::WaveProbe "probe_center_2.5m" {
+//    position = {option::ships::HydCenter_x, 2.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+//};                                 
+//xsf::WaveProbe "probe_-halfHydCenter_2.5m" {         
+//    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 2.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+//};
+//xsf::WaveProbe "probe_halfHydCenter_2.5m" {
+//    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 2.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+//};
+//xsf::WaveProbe "probe_-2xhalfHydCenter_2.5m" {
+//    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 2.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+//};
+//xsf::WaveProbe "probe_2xhalfHydCenter_2.5m" {
+//    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 2.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+//};
+
+
+xsf::WaveProbe "probe_center_5m" {
+    position = {option::ships::HydCenter_x, 5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_7.5m" {
+    position = {option::ships::HydCenter_x, 7.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_7.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 7.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_7.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 7.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_7.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 7.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_7.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 7.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_10m" {
+    position = {option::ships::HydCenter_x, 10 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_10m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 10 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_10m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 10 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_10m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 10 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_10m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 10 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_12.5m" {
+    position = {option::ships::HydCenter_x, 12.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_12.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 12.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_12.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 12.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_12.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 12.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_12.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 12.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_15m" {
+    position = {option::ships::HydCenter_x, 15 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_15m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 15 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_15m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 15 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_15m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 15 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_15m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 15 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_17.5m" {
+    position = {option::ships::HydCenter_x, 17.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_17.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 17.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_17.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 17.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_17.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 17.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_17.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 17.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_20m" {
+    position = {option::ships::HydCenter_x, 20 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_20m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 20 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_20m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 20 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_20m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 20 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_20m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 20 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_22.5m" {
+    position = {option::ships::HydCenter_x, 22.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_22.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 22.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_22.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 22.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_22.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 22.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_22.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 22.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_25m" {
+    position = {option::ships::HydCenter_x, 25 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_25m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 25 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_25m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 25 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_25m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 25 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_25m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 25 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_27.5m" {
+    position = {option::ships::HydCenter_x, 27.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_27.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 27.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_27.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 27.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_27.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 27.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_27.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 27.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_30m" {
+    position = {option::ships::HydCenter_x, 30 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_30m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 30 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_30m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 30 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_30m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 30 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_30m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 30 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_32.5m" {
+    position = {option::ships::HydCenter_x, 32.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_32.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 32.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_32.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 32.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_32.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 32.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_32.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 32.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_35m" {
+    position = {option::ships::HydCenter_x, 35 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                
+xsf::WaveProbe "probe_-halfHydCenter_35m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 35 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_35m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 35 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_35m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 35 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_35m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 35 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_37.5m" {
+    position = {option::ships::HydCenter_x, 37.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_37.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 37.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_37.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 37.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_37.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 37.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_37.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 37.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_40m" {
+    position = {option::ships::HydCenter_x, 40 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_40m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 40 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_40m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 40 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_40m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 40 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_40m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 40 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_42.5m" {
+    position = {option::ships::HydCenter_x, 42.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_42.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 42.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_42.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 42.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_42.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 42.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_42.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 42.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_45m" {
+    position = {option::ships::HydCenter_x, 45 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_45m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 45 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_45m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 45 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_45m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 45 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_45m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 45 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_47.5m" {
+    position = {option::ships::HydCenter_x, 47.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_47.5m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 47.5 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_47.5m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 47.5 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_47.5m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 47.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_47.5m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 47.5 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+
+
+xsf::WaveProbe "probe_center_50m" {
+    position = {option::ships::HydCenter_x, 50 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};                                 
+xsf::WaveProbe "probe_-halfHydCenter_50m" {         
+    position = {option::ships::HydCenter_x - option::ships::halfHydCenter_x, 50 + option::ships::halfBeam, option::logger::waveProbes_z};    // [m, m, m]
+};
+xsf::WaveProbe "probe_halfHydCenter_50m" {
+    position = {option::ships::HydCenter_x + option::ships::halfHydCenter_x, 50 + option::ships::halfBeam, option::logger::waveProbes_z};      // [m, m, m]
+};
+xsf::WaveProbe "probe_-2xhalfHydCenter_50m" {
+    position = {option::ships::HydCenter_x - 2 * option::ships::halfHydCenter_x, 50 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};
+xsf::WaveProbe "probe_2xhalfHydCenter_50m" {
+    position = {option::ships::HydCenter_x + 2 * option::ships::halfHydCenter_x, 50 + option::ships::halfBeam, option::logger::waveProbes_z};       // [m, m, m]
+};

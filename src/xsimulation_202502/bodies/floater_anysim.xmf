@@ -1,0 +1,71 @@
+model "floater" { 
+
+  property references {
+    
+  }
+  
+  include "./" + option::ships::bodyName + "/metadata.xmfh";
+  
+  childs {      
+  
+    xsf::Body "body" = { 
+    
+      childs {  
+        xship::LinearHydrostatics "linHydrostat" {
+            lpp = lpp; // [m]
+            ta = ta; // [m]
+            tf = tf; // [m]
+            beam = beam; // [m]
+            hydDbName = "^*/hydDb";
+            hydDbIndex = 0;
+        }; // end of "linHydrostat"
+            
+        xship::Excitation "waveEx1" {
+          hydDbName = "^*/hydDb";
+          hydDbIndex = 0;
+          factors = {1, 1, 1, 1, 1, 1};
+        }; // end of "waveEx1"
+            
+        mgl::Switch "diffraction_switch" {
+          childs {
+            diffraction::Interpolation "diffraction" {
+              file = "../../../data/" + option::ships::bodyName + "/databases/" + option::ships::bodyPan + "_" + option::sim::dx + "_grid" + option::sim::grid  + "_exp" + option::sim::experiment + ".DIFFRAC.h5m";
+            }; // end of "diffraction"
+          }
+          mgl::val = true;
+        };
+    
+        xsf::Visualisation "visualisation" {
+          geometryFile = geometryFile;
+        }; // end of "visualisation"
+      };
+        
+      mgl::metaData <<? floaterMetaData;
+  
+      roll     = roll;                 // [deg]
+      pitch    = pitch;                 // [deg] (tf - ta) / lpp
+      yaw      = yaw;                 // [deg] (initial heading north)
+      mass = mass; // [kg]
+      kxx = kxx; //[m]
+      kyy = kyy; //[m]
+      kzz = kzz; //[m]   
+      refpos = refpos; // [m, m, m]
+      orientation = option::ships::orientation; // [rad, rad, rad]
+      relcom = relcom; // [m, m, m]
+      position = option::ships::position; 
+  
+      bodyFixedVelocity = option::ships::bodyFixedVelocity;
+      bodyFixedRotation = option::ships::bodyFixedRotation;
+      enableVisualisation = true;
+      kinematic = option::ships::kinematic;
+      freezeSurge = option::ships::freezeSurge;
+      freezeSway = option::ships::freezeSway;
+      freezeHeave = option::ships::freezeHeave;
+      freezeRoll = option::ships::freezeRoll;
+      freezePitch = option::ships::freezePitch;
+      freezeYaw = option::ships::freezeYaw;
+    }; // end of "body"
+    
+  } // end of childs of "floater"
+
+} // end of "floater"

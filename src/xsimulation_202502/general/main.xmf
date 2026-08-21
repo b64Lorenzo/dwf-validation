@@ -1,0 +1,66 @@
+model "model" {
+  
+  property references {
+    ref::timeStep = "ref::time::step@^*/simulationControl";
+    ref::endTime = "ref::time::end@^*/simulationControl";
+  };
+  
+  submodel "root" = "root.xmf"  (
+    option::integrator = option::sim::integrator;
+  ) {};
+  
+  instance "*/area" {
+    append childs {
+      submodel "environment" = "../area/environment_" + option::sim::WaveModel + ".xmf" (
+        option::waves = options::waves;
+        option::vbm = option::vbm;
+      ){};
+    };
+  };
+  
+  instance "*/pre-integrator" {
+    append childs {
+      submodel "simulationControl" = "simulationControl.xmf" (
+        option::sim = option::sim;
+      ){};
+
+      include ?   "../bodies/hydDb.xmfh"
+      include ?   "../bodies/hydDb_"+ option::sim::WaveModel + ".xmfh"
+      
+    };
+  };  
+  
+  instance "*/ships" {
+    append childs {      
+      
+      include ? "../bodies/hydInt_"+ option::sim::WaveModel + ".xmfh";
+      include ? "../bodies/hydInt.xmfh";
+               
+      submodel "floater" = "../bodies/floater_" + option::sim::WaveModel + ".xmf" (
+        option::ships = option::ships;
+        option::vbm = option::vbm;
+		option::sim = option::sim;
+      ){};
+    };
+  };
+  
+  include ? "../bodies/isFixed/" + option::sim::isFixed + "/spring_matrix.xmfh";
+  
+  instance "*/post-integrator" {
+   
+  append childs {
+    include ? "../logger/wavesProbes/wavesProbes_" + option::sim::WaveModel + ".xmfh";
+    submodel "timeTraceLogger" = "../logger/timetraceLogger.xmf" (
+      option::logger = option::logger;
+      ){
+      // subloggers
+      include ? "../logger/subLoggers/waveProbes_" + option::sim::grid  + "_" + option::logger::probeDist + "_" + option::sim::WaveModel + ".xmfh";
+    };
+  };
+  submodel "callbacks" =? "../logger/" + option::sim::WaveModel + "-paraviewer.xmfd"(
+    option::logger = option::logger;
+    option::vbm = option::vbm;
+  ){};
+};
+  
+}

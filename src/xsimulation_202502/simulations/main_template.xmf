@@ -1,0 +1,112 @@
+model "DIFFRAC-VALIDATION" {
+  
+	/////////////////////////////////////////////
+	//WAVES MODELS INPUTS PARAMETER 
+	/////////////////////////////////////////////
+	// Grid
+	input double gridLength             = ___LENGHT___;             // 4 times the ship length [m]
+	input double gridWidth              = ___WIDTH___;           // 2.5 times the ship length [m] 
+	input double waveLength            = (___PERIOD___**2 * math.g)/(2*pi);  // Deep water approximation [m] 
+	input double kWaves                = 2 * pi / waveLength;                 // Cosh model calibration for wavePeriod and h [m^-1]
+	input double kappa                 = kWaves;                              // Cosh dispersion model calibration parameter [m^-1]
+	input double kBndZone              = (kWaves/2);                   // Wave number defining the length of the wave absorption zone [m^-1]
+	//input double dx                    = waveLength / 70;                     // Grid gap size [m]  waveLength / 70;
+	input double dx                    = ___DX___;                     // Grid gap size [m]  waveLength / 70;
+	input int gridNx                   = gridLength / dx + 1;
+	input int gridNy                   = gridWidth / dx + 1;                  // Total #Nodes in y-direction (including wave absorption zones)
+	input position 					   = ___SHIPPOS___;
+	input gridsize                     = {gridNx,gridNy};
+	input gapsize                      = {dx,dx};
+	input int cullCount					   = ___CULLCOUNT___;
+
+	// MODEL
+	input double k_boundary       = kBndZone;
+    
+
+    submodel "main" = "../../../../../general/main.xmf" (
+      //Body
+      option::ships::bodyName = "LNGC";
+      option::ships::HydCenter_x = 135.934;
+      option::ships::halfBeam = ___BEAM___;
+      option::ships::halfHydCenter_x = 135.934 / 2;
+      //option::ships::orientation = {0 deg, 0 deg, ___DEG_SHIFT___ deg};
+      option::ships::orientation = {0 deg, 0 deg, 0 deg};
+      option::ships::position = position;
+      option::ships::kinematic = true;
+      option::ships::refpos = {0.0, 0.0, -11.0};
+      option::ships::bodyFixedVelocity = "(0.0, 0.0, 0.0)";
+      option::ships::bodyFixedRotation = "(0.0, 0.0, 0.0)";
+      option::ships::freezeSurge = ___FREEZE___;
+      option::ships::freezeSway = ___FREEZE___;
+      option::ships::freezeHeave = ___FREEZE___;
+      option::ships::freezeRoll = ___FREEZE___;
+      option::ships::freezePitch = ___FREEZE___;
+      option::ships::freezeYaw = ___FREEZE___;
+      option::ships::bodyPan = "___OBJPAN___";
+	  
+      
+      //General
+      option::sim::experiment = "___EXPERIMENT___";          // Type of experiment
+      option::sim::isFixed = "___ISFIXED___";          // True or False
+      option::sim::WaveModel = "___METHOD___";          // Wave Model Method [vbm | anysim]
+      option::sim::integrator = "rk2";            // rungekutta 2, others: impeuler | euler | rk2 | rk2as | rk4 | cashkarp
+      option::sim::timeStep = ___DT___;            // Time Step integration Method [s]
+      option::sim::endTime  = 400;              // End Time simulation [s]
+      option::sim::dx  = "dx___DX___";
+      option::sim::grid = "___GRID___";
+      
+      //Logger
+      option::logger::tracfile = "output.csv";
+      option::logger::statfile = "statistics.txt";
+      option::logger::statbegin = 200;
+      option::logger::printUnits = true;
+      option::logger::unitEnclosure = "squareBrackets";
+      option::logger::delimiter = ",";
+      option::logger::insertUTC = true;
+      option::logger::actualTime = true;
+      option::logger::waveProbes_z = ___WAVEZ___;
+      option::logger::outputDir = "___OUTPUTDIR___";
+      option::logger::saveCount = cullCount;
+      option::logger::probeDist = "___DX___m";
+      option::logger::cullCount = cullCount;
+      
+      //Waves
+      option::waves::depth = ___DEPTH___;
+      option::waves::wheeler = false;
+      
+      option::waves::reg::Period = ___PERIOD___;           // max 12s (0.5 rad/s) min 3s (2 rad/s)
+      option::waves::reg::Amp = ___AMP___;
+      option::waves::reg::Dir = (___DEG___) deg;
+      
+      option::waves::sea::Height = 0;
+      option::waves::sea::Period = 7;
+      option::waves::sea::Dir = (90) deg;
+      option::waves::sea::Gamma = 3.3;
+      option::waves::sea::Seed = 1;
+      
+      option::waves::swell::Height = 0;
+      option::waves::swell::Period = 7;
+      option::waves::swell::Dir = (90) deg;
+      option::waves::swell::Gamma = 3.3;
+      option::waves::swell::Seed = 1;
+     
+      
+      //VBM
+      option::vbm::useCuda = true;
+      option::vbm::scheme = "fd";
+      option::vbm::integrator = "ab3";
+      option::vbm::bcN = "GenAbsZone";
+      option::vbm::bcS = "GenAbsZone";
+      option::vbm::bcE = "GenAbsZone";
+      option::vbm::bcW = "GenAbsZone";
+      option::vbm::variationalModel = "Cosh";
+      option::vbm::generateIncomingWaves = true;
+      option::vbm::initialCondition = "spectrum";
+      option::vbm::interactionType = "Generate";
+      option::vbm::gapsize = gapsize;
+      option::vbm::gridSize = gridsize;
+      option::vbm::k_boundary = k_boundary;
+      option::vbm::kappa = kappa;
+    ){};
+
+}
