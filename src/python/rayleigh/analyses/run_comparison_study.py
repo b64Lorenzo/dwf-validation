@@ -37,6 +37,7 @@ from rayleigh.config import (
     GROUP_BY_LIST,
     DT_MODE,
     TIME_WINDOW,
+    PLOTS
 )
 
 from rayleigh.processing.processor import process_file
@@ -250,6 +251,7 @@ def run_comparison_study():
                     dt_mode=DT_MODE,
                     time_window=TIME_WINDOW,
                     logger=logger,
+                    plots=PLOTS,
                 )
 
                 logger.info(

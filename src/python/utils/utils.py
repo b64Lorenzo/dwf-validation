@@ -40,7 +40,27 @@ Last Updated
 from __future__ import annotations
 
 import numpy as np
+from collections import defaultdict
 
+
+from collections import defaultdict
+
+
+def split_panels(groups):
+
+    panels = defaultdict(dict)
+
+    for full_key, data in groups.items():
+
+        study = full_key[0]
+
+        group_key = full_key[1:]
+
+        panel_key = group_key[1:]
+
+        panels[panel_key][full_key] = data
+
+    return panels
 
 def format_time_window(
     time_window: tuple[float | None, float | None]

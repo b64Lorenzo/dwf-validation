@@ -85,3 +85,23 @@ def get_xlabel(key):
     }
 
     return labels.get(key, key)
+
+def panel_label(
+    panel_key,
+    group_by,
+):
+
+    if not panel_key:
+        return ""
+
+    parts = []
+
+    for name, value in zip(
+        group_by[1:],
+        panel_key,
+    ):
+        parts.append(
+            f"{name}={value}"
+        )
+
+    return ", ".join(parts)

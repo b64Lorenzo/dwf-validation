@@ -95,34 +95,23 @@ SINGLE_STUDY["output_dir"].mkdir(
 
 COMPARISON_STUDY = {
 
-    "reference_study": "DWF-1m",
+    "reference_study": "DWF-dx2.5m",
 
     "studies": {
 
-        
-        "DWF-dy0.5m": [
-        (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFInterpAnglespring\dx2.5dz1dtheta15"),
-         "dwf_fixed_dyshift_0.5m_dx2.5"),
-    ],
-
-    "DWF-dy1m": [
-        (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFInterpAnglespring\dx2.5dz1dtheta30"),
-         "dwf_fixed_dyshift_1m_dx2.5"),
-    ],
-
-    "DWF-dy1.25m": [
+    "DWF-dw15": [
         (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFspring\dx2.5\dz0.1"),
-         "dwf_fixed_dyshift_1.25m_dx2.5"),
+         "dwf_fixed_dx2.5dz0.1dw0.05dtheta15_interpangle"),
     ],
 
-    "DWF-dy2m": [
-        (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFspring\dx2.5\dz0.1"),
-         "dwf_fixed_dyshift_2m_dx2.5"),
+    "DWF-dw10m": [
+        (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFInterpAngle\dx2.5\dz0.1dw0.05dtheta10"),
+         "dwf_fixed_dx2.5dz0.1dw0.05dtheta10_interpangle"),
     ],
 
-    "DWF-1m": [
+    "DWF-dx2.5m": [
         (Path(r"H:\Documents\validation\data\LNGC\Results\xsims\DWFspring\dx2.5\dz0.1"),
-         "dwf_fixed_dx1dz0.1dw0.1dtheta30"),
+         "dwf_fixed_dx2.5dz0.1dw0.05theta15"),
     ],
 
         # Example additional study
@@ -142,7 +131,7 @@ COMPARISON_STUDY = {
 
     "output_dir": Path(
         r"H:\Documents\validation\data\LNGC\Results"
-        r"\analysis\DWF_interpspacefixed"
+        r"\analysis\DWF_interpanglefixed"
     ),
 
     "space_shift": {
@@ -206,6 +195,15 @@ DT_MODE = "ppp"
 # "ppp"
 
 # ============================================================
+# PLOTTING SETTINGS
+## ==========================================================
+# comparison: plot comparison of multiple studies
+# distributions: plot distributions of a single study
+# 95ci: plot 95% confidence intervals of a single study
+
+PLOTS = ["95ci"]
+
+# ============================================================
 # GROUPING DEFINITIONS
 # ============================================================
 
@@ -216,11 +214,12 @@ GROUP_BY_LIST = [
 
     #["dx"],
 
-    ["pos"],
+    #["pos"],
     #["pos", "dt"],
 
-    #["angle"],
-    #["angle", "dt"],
+    ["angle"],
+    ["angle", "pos"],
+    
 
     ["depth"],
     #["depth", "dt"],
@@ -258,7 +257,7 @@ FILTER_SETS =  ([
 
     {
         "freq": freq,
-        "angle": (angle, angle),
+        "angle": (30, 90),
         "dt": (None, None),
         "dx": DX_FILTER,
         "pan": (None, None),
@@ -267,7 +266,7 @@ FILTER_SETS =  ([
     }
 
     for freq in FREQ_BANDS
-    for angle in range(30, 151, 30)
+    #for angle in range(45, 91, 15)
 
 ]
     #             + [

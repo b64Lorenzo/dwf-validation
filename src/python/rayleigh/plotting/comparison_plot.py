@@ -41,7 +41,8 @@ from utils.statistics import exceedance
 from utils.utils import (
     sort_key,
     fmt,
-    format_time_window
+    format_time_window,
+    split_panels
 )
 
 from utils.filters import (
@@ -52,6 +53,7 @@ from utils.positions import (
     pos_to_order,
     pos_to_label,
     get_xlabel,
+    panel_label
 )
 
 
@@ -230,6 +232,7 @@ def plot_comparison(
     dt_mode,
     time_window,
     logger,
+    plots=None,
 ):
     """
     Create a comparison figure for multiple studies.
@@ -262,7 +265,232 @@ def plot_comparison(
 
     time_window : tuple
         Active time window.
+
+    plots : list[str], optional
+        List of plot types to generate.
+        [comparison, distributions, 95ci]
     """
+
+    sorted_groups = sorted(
+        groups.items(),
+        key=lambda x: sort_key((x[0][1:],))
+    )
+
+    if len(group_by) == 1:
+
+        panel_groups = {
+            (): dict(sorted_groups)
+        }
+
+    else:
+
+        panel_groups = split_panels(
+            dict(sorted_groups)
+        )
+
+    linestyles = [
+        "-",
+        (0, (1, 1)),
+        (5, (10, 3)),
+        (0, (5, 10)),
+        (0, (5, 5)),
+        (0, (5, 1)),
+        (0, (3, 10, 1, 10)),
+        (0, (3, 5, 1, 5)),
+        (0, (3, 1, 1, 1)),
+        (0, (3, 5, 1, 5, 1, 5)),
+        (0, (3, 10, 1, 10, 1, 10)),
+        (0, (3, 1, 1, 1, 1, 1)),
+    ]
+
+    for panel_key, panel_data in panel_groups.items():
+
+        panel_sorted_groups = sorted(
+            panel_data.items(),
+            key=lambda x: sort_key((x[0][1:],))
+        )
+
+        studies = sorted({
+            g[0]
+            for g, _ in panel_sorted_groups
+        })
+
+        g_vals = [
+            g[1:]
+            for g, _ in panel_sorted_groups
+        ]
+
+        g1_vals = sorted({
+            g[0]
+            for g in g_vals
+        })
+
+        is_numeric = all(
+            isinstance(v, (int, float))
+            for v in g1_vals
+            if v is not None
+        )
+
+        if is_numeric:
+
+            norm = mcolors.Normalize(
+                vmin=min(g1_vals),
+                vmax=max(g1_vals),
+            )
+
+            cmap = matplotlib.colormaps["turbo"]
+
+            color_map = {
+                v: cmap(norm(v))
+                for v in g1_vals
+            }
+
+        else:
+
+            cmap = matplotlib.colormaps["tab10"]
+
+            norm = None
+
+            color_map = {
+                v: cmap(i % 10)
+                for i, v in enumerate(g1_vals)
+            }
+
+        study_ls = {
+            s: linestyles[i % len(linestyles)]
+            for i, s in enumerate(studies)
+        }
+
+        study_colors = {
+            s: plt.get_cmap("tab10")(i)
+            for i, s in enumerate(studies)
+        }
+
+        stats = {
+            s: {}
+            for s in studies
+        }
+
+        for full_key, data in panel_sorted_groups:
+
+            study = full_key[0]
+            key = full_key[1:]
+
+            wave = np.abs(data["wave"])
+
+            stats[study][key] = {
+                "mean": np.mean(wave),
+                "std": np.std(wave),
+                "wave": wave,
+            }
+
+        ref_data = stats.get(
+            reference_study,
+            {},
+        )
+
+        parts = []
+
+        for name, value in zip(
+            group_by[1:],
+            panel_key,
+        ):
+
+            if name == "pos":
+                value = pos_to_label(value)
+
+            parts.append(
+                f"{name}={value}"
+            )
+
+        panel_text = ""
+
+        if parts:
+            panel_text = " | " + ", ".join(parts)
+
+        title = (
+            f"{' vs '.join(study_names)}"
+            f"{panel_text} | "
+            f"{format_filters(filters)}"
+        )
+
+        if "comparison" in plots:
+
+            _plot_comparison(
+                panel_key=panel_key,
+                sorted_groups=panel_sorted_groups,
+                studies=studies,
+                g1_vals=g1_vals,
+                color_map=color_map,
+                study_ls=study_ls,
+                study_colors=study_colors,
+                stats=stats,
+                ref_data=ref_data,
+                is_numeric=is_numeric,
+                cmap=cmap,
+                norm=norm,
+                title=title,
+                group_by=group_by,
+                filters=filters,
+                output_dir=output_dir,
+                reference_study=reference_study,
+                space_shift=space_shift,
+                dt_mode=dt_mode,
+                time_window=time_window,
+            )
+
+        if "distributions" in plots:
+
+            _plot_distributions(
+                panel_key=panel_key,
+                sorted_groups=panel_sorted_groups,
+                studies=studies,
+                study_ls=study_ls,
+                color_map=color_map,
+                g1_vals=g1_vals,
+                is_numeric=is_numeric,
+                cmap=cmap,
+                norm=norm,
+                group_by=group_by,
+                filters=filters,
+                output_dir=output_dir,
+                dt_mode=dt_mode,
+                time_window=time_window,
+                title=title,
+            )
+
+        if "95ci" in plots:
+
+            _plot_95_ci(
+                panel_key=panel_key,
+                studies=studies,
+                stats=stats,
+                ref_data=ref_data,
+                study_colors=study_colors,
+                group_by=group_by,
+                filters=filters,
+                output_dir=output_dir,
+                reference_study=reference_study,
+                space_shift=space_shift,
+                dt_mode=dt_mode,
+                time_window=time_window,
+            )
+
+
+
+def _plot_comparison(
+    panel_key,
+    sorted_groups,
+    group_by,
+    filters,
+    output_dir,
+    study_names,
+    reference_study,
+    space_shift,
+    dt_mode,
+    time_window,
+    logger,
+):
 
     fig = plt.figure(figsize=(26, 14))
 
@@ -278,31 +506,7 @@ def plot_comparison(
     ax_stat = fig.add_subplot(gs[1, :])
     ax_stat2 = ax_stat.twinx()
 
-    linestyles = ["-", "--", ":", "-."]
-
-    # ====================================================
-    # SORT GROUPS
-    # ====================================================
-
-    sorted_groups = sorted(
-        groups.items(),
-        key=lambda x: sort_key((x[0][1:],))
-    )
-
-    studies = sorted({
-        g[0]
-        for g, _ in sorted_groups
-    })
-
-    g_vals = [
-        g[1:]
-        for g, _ in sorted_groups
-    ]
-
-    g1_vals = sorted({
-        g[0]
-        for g in g_vals
-    })
+    
 
     # ====================================================
     # COLORMAP
@@ -666,9 +870,29 @@ def plot_comparison(
         linestyle=":",
     )
 
+    parts = []
+
+    for name, value in zip(
+        group_by[1:],
+        panel_key,
+    ):
+
+        if name == "pos":
+            value = pos_to_label(value)
+
+        parts.append(
+            f"{name}={value}"
+        )
+
+    panel_text = ""
+
+    if parts:
+        panel_text = " | " + ", ".join(parts)
+
+
     title = (
-        f"{' vs '.join(study_names)} | "
-        f"Group by: {group_by} | "
+        f"{' vs '.join(study_names)}"
+        f"{panel_text} | "
         f"{format_filters(filters)}"
     )
     
@@ -869,9 +1093,17 @@ def plot_comparison(
     )
     
     
+    panel_suffix = ""
+
+    if panel_key:
+
+        panel_suffix = "_" + "_".join(
+            str(v)
+            for v in panel_key
+        )
 
     filename = (
-        f"compare_"
+        f"compare{panel_suffix}_"
         f"{'-'.join(group_by)}_"
         f"{dt_mode}_"
         f"{format_filters(filters)}_"
@@ -890,9 +1122,25 @@ def plot_comparison(
     
     
     
-    
-        # ====================================================
-    # NEW FIGURE : TOP PANELS ONLY
+def _plot_distributions(
+    panel_key,
+    sorted_groups,
+    studies,
+    study_ls,
+    color_map,
+    g1_vals,
+    is_numeric,
+    cmap,
+    norm,
+    group_by,
+    filters,
+    output_dir,
+    dt_mode,
+    time_window,
+    title,
+    ):
+    # ====================================================
+    # Distributions Plots
     # ====================================================
 
     fig_top, (ax_pdf2, ax_exc2) = plt.subplots(
@@ -1048,8 +1296,20 @@ def plot_comparison(
         fontsize=16,
     )
 
+    panel_suffix = ""
+
+    if panel_key:
+
+        panel_suffix = "_" + "_".join(
+            f"{name}-{value}"
+            for name, value in zip(
+                group_by[1:],
+                panel_key,
+            )
+        )
+
     top_filename = (
-        f"compare_top_"
+        f"compare_top{panel_suffix}_"
         f"{'-'.join(group_by)}_"
         f"{dt_mode}_"
         f"{format_filters(filters)}_"
@@ -1065,8 +1325,25 @@ def plot_comparison(
 
     plt.close(fig_top)
     
-        # ====================================================
-    # NEW FIGURE : MEAN + RELATIVE ERROR (95% CI)
+
+
+
+def _plot_95_ci(
+    panel_key,
+    studies,
+    stats,
+    ref_data,
+    study_colors,
+    group_by,
+    filters,
+    output_dir,
+    reference_study,
+    space_shift,
+    dt_mode,
+    time_window,
+    ):
+    # ====================================================
+    # MEAN + RELATIVE ERROR (95% CI)
     # ====================================================
 
     fig_bottom, (ax_mean, ax_rel) = plt.subplots(
@@ -1164,26 +1441,45 @@ def plot_comparison(
 
         if study != reference_study:
 
-            common_keys = sorted(
-                set(data.keys())
-                &
-                set(ref_data.keys())
-            )
+            ref_keys = sorted(ref_data.keys())
+            cur_keys = sorted(data.keys())
 
-            if not common_keys:
+            if not ref_keys or not cur_keys:
                 continue
+
+            # ---------------------------------------------
+            # MASTER GRID = study with most points
+            # ---------------------------------------------
+
+            if len(cur_keys) >= len(ref_keys):
+                master_keys = cur_keys
+            else:
+                master_keys = ref_keys
+
+            # ---------------------------------------------
+            # X coordinates
+            # ---------------------------------------------
 
             if group_by[0] == "pos":
 
-                common_keys = sorted(
-                    common_keys,
-                    key=lambda k:
-                    pos_to_order(k[0])
+                ref_keys = sorted(
+                    ref_keys,
+                    key=lambda k: pos_to_order(k[0])
                 )
 
-                x_err = np.arange(
-                    len(common_keys)
+                cur_keys = sorted(
+                    cur_keys,
+                    key=lambda k: pos_to_order(k[0])
                 )
+
+                master_keys = sorted(
+                    master_keys,
+                    key=lambda k: pos_to_order(k[0])
+                )
+
+                x_ref = np.arange(len(ref_keys))
+                x_cur = np.arange(len(cur_keys))
+                x_err = np.arange(len(master_keys))
 
             elif group_by[0] == "depth":
 
@@ -1192,30 +1488,164 @@ def plot_comparison(
                     0.0,
                 )
 
+                x_ref = np.array([
+                    k[0]
+                    for k in ref_keys
+                ])
+
+                x_cur = np.array([
+                    k[0] + shift
+                    for k in cur_keys
+                ])
+
                 x_err = np.array([
                     k[0] + shift
-                    for k in common_keys
+                    for k in master_keys
                 ])
 
             else:
 
-                x_err = np.array([
+                x_ref = np.array([
                     k[0]
-                    for k in common_keys
+                    for k in ref_keys
                 ])
 
-            errors = []
-            err_low = []
-            err_high = []
+                x_cur = np.array([
+                    k[0]
+                    for k in cur_keys
+                ])
 
-            tasks = [
-                (
-                    key,
-                    ref_data[key]["wave"],
-                    data[key]["wave"],
+                x_err = np.array([
+                    k[0]
+                    for k in master_keys
+                ])
+
+            # ---------------------------------------------
+            # TRUE INTERPOLATED BCa CI
+            # ---------------------------------------------
+
+            xmin = max(
+                np.min(x_ref),
+                np.min(x_cur),
+            )
+
+            xmax = min(
+                np.max(x_ref),
+                np.max(x_cur),
+            )
+
+            if xmin >= xmax:
+                continue
+
+            # dense grid
+
+            x_err = np.linspace(
+                xmin,
+                xmax,
+                max(
+                    200,
+                    len(master_keys),
+                ),
+            )
+
+            tasks = []
+
+            for x in x_err:
+
+                ref_idx = np.searchsorted(
+                    x_ref,
+                    x,
                 )
-                for key in common_keys
-            ]
+
+                cur_idx = np.searchsorted(
+                    x_cur,
+                    x,
+                )
+
+                ref_idx = min(
+                    max(ref_idx, 1),
+                    len(x_ref) - 1,
+                )
+
+                cur_idx = min(
+                    max(cur_idx, 1),
+                    len(x_cur) - 1,
+                )
+
+                # -----------------------------------------
+                # reference interpolation
+                # -----------------------------------------
+
+                xr0 = x_ref[ref_idx - 1]
+                xr1 = x_ref[ref_idx]
+
+                wr = (
+                    (x - xr0)
+                    /
+                    (xr1 - xr0)
+                )
+
+                ref_wave0 = ref_data[
+                    ref_keys[ref_idx - 1]
+                ]["wave"]
+
+                ref_wave1 = ref_data[
+                    ref_keys[ref_idx]
+                ]["wave"]
+
+                # -----------------------------------------
+                # current interpolation
+                # -----------------------------------------
+
+                xc0 = x_cur[cur_idx - 1]
+                xc1 = x_cur[cur_idx]
+
+                wc = (
+                    (x - xc0)
+                    /
+                    (xc1 - xc0)
+                )
+
+                cur_wave0 = data[
+                    cur_keys[cur_idx - 1]
+                ]["wave"]
+
+                cur_wave1 = data[
+                    cur_keys[cur_idx]
+                ]["wave"]
+
+                # same sample length
+
+                n = min(
+                    len(ref_wave0),
+                    len(ref_wave1),
+                    len(cur_wave0),
+                    len(cur_wave1),
+                )
+
+                ref_wave = (
+                    (1.0 - wr)
+                    * ref_wave0[:n]
+                    +
+                    wr
+                    * ref_wave1[:n]
+                )
+
+                cur_wave = (
+                    (1.0 - wc)
+                    * cur_wave0[:n]
+                    +
+                    wc
+                    * cur_wave1[:n]
+                )
+
+                tasks.append(
+                    (
+                        x,
+                        ref_wave,
+                        cur_wave,
+                    )
+                )
 
             with ProcessPoolExecutor() as ex:
 
@@ -1226,22 +1656,19 @@ def plot_comparison(
                     )
                 )
 
-            for key, err, ci_low, ci_high in results:
+            errors = []
+            lower = []
+            upper = []
+
+            for _, err, ci_low, ci_high in results:
 
                 errors.append(err)
-
-                err_low.append(
-                    err - ci_low
-                )
-
-                err_high.append(
-                    ci_high - err
-                )
+                lower.append(ci_low)
+                upper.append(ci_high)
 
             errors = np.asarray(errors)
-
-            lower = errors - np.asarray(err_low)
-            upper = errors + np.asarray(err_high)
+            lower = np.asarray(lower)
+            upper = np.asarray(upper)
 
             ax_rel.plot(
                 x_err,
@@ -1356,8 +1783,30 @@ def plot_comparison(
         hspace=0.12,
     )
 
+    parts = []
+
+    for name, value in zip(
+        group_by[1:],
+        panel_key,
+    ):
+
+        if name == "pos":
+            value = pos_to_label(value)
+
+        parts.append(
+            f"{name}={value}"
+        )
+
+    panel_text = ""
+
+    if parts:
+        panel_text = " | " + ", ".join(parts)
+
     fig_bottom.suptitle(
-        f"Mean Wave Height and Relative Error (95% CI) | Reference={reference_study} | {format_filters(filters)}",
+        f"Mean Wave Height and Relative Error (95% CI)"
+        f" | Reference={reference_study}"
+        f"{panel_text}"
+        f" | {format_filters(filters)}",
         fontsize=16,
         y=0.98,
     )
@@ -1366,8 +1815,20 @@ def plot_comparison(
     # SAVE
     # ====================================================
 
+    panel_suffix = ""
+
+    if panel_key:
+
+        panel_suffix = "_" + "_".join(
+            f"{name}-{value}"
+            for name, value in zip(
+                group_by[1:],
+                panel_key,
+            )
+        )
+
     bottom_filename = (
-        f"mean_relative_error_95ci_"
+        f"mean_relative_error_95ci{panel_suffix}_"
         f"{'-'.join(group_by)}_"
         f"{dt_mode}_"
         f"{format_filters(filters)}_"
