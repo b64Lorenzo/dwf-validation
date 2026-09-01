@@ -1521,8 +1521,34 @@ def _plot_95_ci(
                 ])
 
             # ---------------------------------------------
-            # TRUE INTERPOLATED BCa CI
+            # Rayleigh-interpolated BCa CI
             # ---------------------------------------------
+
+            # use unshifted coordinates for statistics
+
+            if group_by[0] == "depth":
+
+                x_ref = np.array([
+                    k[0]
+                    for k in ref_keys
+                ])
+
+                x_cur = np.array([
+                    k[0]
+                    for k in cur_keys
+                ])
+
+            else:
+
+                x_ref = np.array([
+                    k[0]
+                    for k in ref_keys
+                ])
+
+                x_cur = np.array([
+                    k[0]
+                    for k in cur_keys
+                ])
 
             xmin = max(
                 np.min(x_ref),
@@ -1537,8 +1563,6 @@ def _plot_95_ci(
             if xmin >= xmax:
                 continue
 
-            # dense grid
-
             x_err = np.linspace(
                 xmin,
                 xmax,
@@ -1548,95 +1572,60 @@ def _plot_95_ci(
                 ),
             )
 
+            # ---------------------------------------------
+            # Rayleigh sigma from means
+            # ---------------------------------------------
+
+            mean_ref = np.array([
+                ref_data[k]["mean"]
+                for k in ref_keys
+            ])
+
+            mean_cur = np.array([
+                data[k]["mean"]
+                for k in cur_keys
+            ])
+
+            sigma_ref = (
+                mean_ref
+                /
+                np.sqrt(np.pi / 2.0)
+            )
+
+            sigma_cur = (
+                mean_cur
+                /
+                np.sqrt(np.pi / 2.0)
+            )
+
+            sigma_ref_i = np.interp(
+                x_err,
+                x_ref,
+                sigma_ref,
+            )
+
+            sigma_cur_i = np.interp(
+                x_err,
+                x_cur,
+                sigma_cur,
+            )
+
             tasks = []
 
-            for x in x_err:
+            for x, sr, sc in zip(
+                x_err,
+                sigma_ref_i,
+                sigma_cur_i,
+            ):
 
-                ref_idx = np.searchsorted(
-                    x_ref,
-                    x,
+                ref_wave = np.random.rayleigh(
+                    scale=sr,
+                    size=10000,
                 )
 
-                cur_idx = np.searchsorted(
-                    x_cur,
-                    x,
-                )
-
-                ref_idx = min(
-                    max(ref_idx, 1),
-                    len(x_ref) - 1,
-                )
-
-                cur_idx = min(
-                    max(cur_idx, 1),
-                    len(x_cur) - 1,
-                )
-
-                # -----------------------------------------
-                # reference interpolation
-                # -----------------------------------------
-
-                xr0 = x_ref[ref_idx - 1]
-                xr1 = x_ref[ref_idx]
-
-                wr = (
-                    (x - xr0)
-                    /
-                    (xr1 - xr0)
-                )
-
-                ref_wave0 = ref_data[
-                    ref_keys[ref_idx - 1]
-                ]["wave"]
-
-                ref_wave1 = ref_data[
-                    ref_keys[ref_idx]
-                ]["wave"]
-
-                # -----------------------------------------
-                # current interpolation
-                # -----------------------------------------
-
-                xc0 = x_cur[cur_idx - 1]
-                xc1 = x_cur[cur_idx]
-
-                wc = (
-                    (x - xc0)
-                    /
-                    (xc1 - xc0)
-                )
-
-                cur_wave0 = data[
-                    cur_keys[cur_idx - 1]
-                ]["wave"]
-
-                cur_wave1 = data[
-                    cur_keys[cur_idx]
-                ]["wave"]
-
-                # same sample length
-
-                n = min(
-                    len(ref_wave0),
-                    len(ref_wave1),
-                    len(cur_wave0),
-                    len(cur_wave1),
-                )
-
-                ref_wave = (
-                    (1.0 - wr)
-                    * ref_wave0[:n]
-                    +
-                    wr
-                    * ref_wave1[:n]
-                )
-
-                cur_wave = (
-                    (1.0 - wc)
-                    * cur_wave0[:n]
-                    +
-                    wc
-                    * cur_wave1[:n]
+                cur_wave = np.random.rayleigh(
+                    scale=sc,
+                    size=10000,
                 )
 
                 tasks.append(
@@ -1656,29 +1645,45 @@ def _plot_95_ci(
                     )
                 )
 
-            errors = []
-            lower = []
-            upper = []
+            errors = np.array([
+                r[1]
+                for r in results
+            ])
 
-            for _, err, ci_low, ci_high in results:
+            lower = np.array([
+                r[2]
+                for r in results
+            ])
 
-                errors.append(err)
-                lower.append(ci_low)
-                upper.append(ci_high)
+            upper = np.array([
+                r[3]
+                for r in results
+            ])
 
-            errors = np.asarray(errors)
-            lower = np.asarray(lower)
-            upper = np.asarray(upper)
+            # plotting coordinates
+
+            if group_by[0] == "depth":
+
+                shift = space_shift.get(
+                    study,
+                    0.0,
+                )
+
+                x_plot = x_err + shift
+
+            else:
+
+                x_plot = x_err
 
             ax_rel.plot(
-                x_err,
+                x_plot,
                 errors,
                 color=study_colors[study],
                 linewidth=2,
             )
 
             ax_rel.fill_between(
-                x_err,
+                x_plot,
                 lower,
                 upper,
                 color=study_colors[study],
