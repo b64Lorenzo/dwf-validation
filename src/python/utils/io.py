@@ -217,6 +217,7 @@ def load_all(
             executor.submit(
                 process_file,
                 file,
+                logger
             )
 
             for file in files
