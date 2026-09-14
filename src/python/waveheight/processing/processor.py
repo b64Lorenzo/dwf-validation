@@ -29,7 +29,6 @@ import numpy as np
 from pymarin_timedom.fft import direct
 
 from utils.io import read_db
-
 from waveheight.config import (
     FOLDER_RE,
 )
@@ -39,8 +38,13 @@ from waveheight.config import (
 # PROBE COORDINATES
 # ============================================================
 
+# Supports both:
+#
+# WaveElev_probe_xm150_yp48
+# WaveElev_probe_xm175.0_yp2.5
+#
 PROBE_RE = re.compile(
-    r"WaveElev_probe_x([mp]\d+)_y([mp]\d+)"
+    r"WaveElev_probe_x([mp]\d+(?:\.\d+)?)_y([mp]\d+(?:\.\d+)?)"
 )
 
 
@@ -48,26 +52,36 @@ def decode_coordinate(value: str):
     """
     Examples
     --------
-    m150 -> -150
-    p150 -> 150
+    m150    -> -150
+    p150    -> 150
+
+    m175.0  -> -175.0
+    p2.5    -> 2.5
     """
 
     sign = -1 if value[0] == "m" else 1
 
-    return sign * int(value[1:])
+    number = float(value[1:])
+
+    if number.is_integer():
+        return sign * int(number)
+
+    return sign * number
 
 
 def extract_coordinates(
     signal_name: str,
 ):
     """
-    Example
-    -------
+    Examples
+    --------
     WaveElev_probe_xm150_yp48
+
+    WaveElev_probe_xm175.0_yp2.5
 
     Returns
     -------
-    tuple[int, int] | None
+    tuple[int | float, int | float] | None
     """
 
     match = PROBE_RE.search(
@@ -296,6 +310,13 @@ def process_file(
             )
 
             if coordinates is None:
+
+                if logger:
+                    logger.debug(
+                        "Could not parse coordinates from %s",
+                        signal_name,
+                    )
+
                 continue
 
             try:

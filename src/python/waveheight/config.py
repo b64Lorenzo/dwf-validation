@@ -15,18 +15,18 @@ import re
 # ============================================================
 
 ANALYSIS_TYPE = "waveheight_map"
+METHOD = "anysim"
 
 # ============================================================
 # INPUT
 # ============================================================
 
-sim = "angle30_dx1_dt0.031416_freq2_beam0_pan3000"
+sim = "angle150_dx2.5_dt0.03927_freq0.8_beam0_pan3000"
+#sim = "angle150_dx2.5_dt0.07854_freq0.4_beam0_pan3000"
 
 SIMULATION_FOLDER = (
     Path(
-        r"H:\Documents\validation\src\xsimulation_202502"
-        r"\simulations\anysim"
-        r"\dz0.1dw0.1dtheta30fixedAngle30"
+        r"H:\Documents\validation\src\xsimulation_202502\simulations\anysim_spring2.5spring\dz0.1dw0.05dtheta15springAngle150"
     )
     / sim
 )
@@ -39,10 +39,10 @@ OUTPUT_DIR = (
 
 Path(
 
-r"H:\Documents\validation\data\plots\waveheight_grid"
+r"H:\Documents\validation\data\plots\waveheight_grid\spring"
 
 )
-
+/ METHOD
 / sim
 
 )
@@ -56,11 +56,11 @@ OUTPUT_DIR.mkdir(
 # CACHE
 # ============================================================
 
-CACHE_DIR = Path(
+CACHE_DIR =( Path(
     r"H:\Documents\validation\data"
-    r"\cache\waveheight"
+    r"\cache\waveheight\spring"
+)/ METHOD
 )
-
 CACHE_DIR.mkdir(
     parents=True,
     exist_ok=True,
